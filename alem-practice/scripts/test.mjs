@@ -7,6 +7,7 @@ const file=join(directory,`test-${Date.now()}.db`);
 const sqlite=new DatabaseSync(file);
 for(const name of readdirSync('prisma/migrations').filter(n=>n!=='migration_lock.toml').sort())sqlite.exec(readFileSync(`prisma/migrations/${name}/migration.sql`,'utf8'));
 sqlite.close();
-const result=spawnSync(process.execPath,['node_modules/tsx/dist/cli.mjs','--test','tests/domain.test.ts','tests/workflow.test.ts','tests/auth.test.ts'],{stdio:'inherit',env:{...process.env,AUTH_MODE:'mock',ALLOW_MOCK_AUTH:'true',APP_URL:'http://127.0.0.1:3000',DATABASE_URL:`file:${file.replaceAll('\\','/')}`}});
+const tests=readdirSync('tests').filter(name=>name.endsWith('.test.ts')).map(name=>`tests/${name}`);
+const result=spawnSync(process.execPath,['node_modules/tsx/dist/cli.mjs','--test','--test-concurrency=1',...tests],{stdio:'inherit',env:{...process.env,AI_MODE:'mock',OPENAI_API_KEY:'',AI_API_KEY:'',AUTH_MODE:'mock',ALLOW_MOCK_AUTH:'true',APP_URL:'http://127.0.0.1:3000',DATABASE_URL:`file:${file.replaceAll('\\','/')}`}});
 rmSync(file,{force:true});
 process.exitCode=result.status??1;

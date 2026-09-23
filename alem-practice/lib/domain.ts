@@ -7,11 +7,16 @@ export const hints: Record<Field,string> = {context:'Что происходит
 export type Fields = Record<Field,string|null>;
 export type Learning = {skills:string[];prerequisites:string[];portfolio:string;difficulty:string};
 export const emptyFields = ():Fields => Object.fromEntries(fieldKeys.map(k=>[k,null])) as Fields;
-export function substantive(value:unknown) {return typeof value==='string' && value.trim().length>=3 && !/^(не знаю|потом|не указано|нет|n\/a|[-—.]+)$/iu.test(value.trim());}
+export function substantive(value:unknown) {return typeof value==='string' && value.trim().length>=3 && !/^(не знаю|потом|не указано|нет|n\/a|unknown|tbd|білмеймін|белгісіз|кейін|жоқ|көрсетілмеген)[\s.!?…]*$/iu.test(value.trim()) && /[\p{L}\p{N}]/u.test(value);}
 export function validField(key:Field,value:unknown) {if(!substantive(value))return false;if(key==='contact')return typeof value==='string' && (/[^\s@]+@[^\s@]+\.[^\s@]+/.test(value)||/https?:\/\/\S+/.test(value)||/\+?[\d ()-]{7,}/.test(value));return true;}
 export const readinessLevel=(score:number)=>score<40?'draft':score<70?'working':score<90?'ready':'priority';
 export const levelLabels:Record<string,string>={draft:'Черновик',working:'Рабочая',ready:'Готовая',priority:'Приоритетная'};
 export function calculateScore(fields:Fields,confirmed:string[]) {return fieldKeys.reduce((s,k)=>s+(confirmed.includes(k)&&validField(k,fields[k])?weights[k]:0),0);}
+export function readinessDetails(fields:Fields,confirmed:string[]){
+ const breakdown=fieldKeys.map(field=>({field,label:labels[field],weight:weights[field],points:confirmed.includes(field)&&validField(field,fields[field])?weights[field]:0,confirmed:confirmed.includes(field),complete:validField(field,fields[field])}));
+ const score=calculateScore(fields,confirmed);
+ return {score,level:readinessLevel(score),breakdown,missingFields:fieldKeys.filter(field=>!validField(field,fields[field])),tips:breakdown.filter(item=>!item.points).map(item=>({field:item.field,message:item.complete?'Подтвердите сведения':hints[item.field],potentialPoints:item.weight}))};
+}
 export function retainConfirmations(before:Fields,after:Fields,confirmed:string[]) {return confirmed.filter((k):k is Field=>fieldKeys.includes(k as Field)&&before[k as Field]===after[k as Field]&&validField(k as Field,after[k as Field]));}
 const nullableText=z.string().max(6000).nullable();
 export const fieldsSchema=z.object({context:nullableText,need:nullableText,data:nullableText,expectedResult:nullableText,successCriteria:nullableText,constraints:nullableText,users:nullableText,contact:nullableText,collaboration:nullableText}).strict();
@@ -25,4 +30,4 @@ export type TeamView={id:string;name:string;interests:string[];skills:string[];t
 export type ProposalView={id:string;taskId:string;taskTitle:string;ownerId:string;teamId:string;teamName:string;idea:string;plan:string[];durationDays:number;prototypeUrl:string;assumptions:string;status:string;milestone:null|{id:string;status:string;result:string;resultUrl:string}};
 export type PublicProfile={id:string;actorId:string;name:string;role:string;bio:string;location:string;education:string;skills:string[];website:string;isTest:boolean};
 export type OwnProfile=PublicProfile&{phone:string;publicProfile:boolean};
-export type AppData={tasks:(TaskView&{isDemo:boolean})[];businesses:BusinessView[];teams:(TeamView&{isDemo:boolean})[];proposals:ProposalView[];profiles:PublicProfile[];me:OwnProfile|null;aiMode:string;authMode:string};
+export type AppData={tasks:(TaskView&{isDemo:boolean})[];businesses:BusinessView[];teams:(TeamView&{isDemo:boolean})[];proposals:ProposalView[];profiles:PublicProfile[];me:OwnProfile|null;aiMode:string;aiConfiguration?:{configured:boolean;provider:string;model:string|null};authMode:string};
