@@ -20,6 +20,8 @@ model Draft {
   business Business @relation(fields: [businessId], references: [id])
   text String
   industry String
+  sourceKey String? @unique
+  answers String @default("[]")
   createdAt DateTime @default(now())
   tasks Task[]
 }
@@ -36,6 +38,7 @@ model Task {
   learning String
   readinessScore Int @default(0)
   publicationStatus String @default("unpublished")
+  reviewRequired Boolean @default(false)
   isDemo Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -65,6 +68,7 @@ model Proposal {
   durationDays Int
   prototypeUrl String
   assumptions String @default("")
+  submissionKey String? @unique
   status String @default("pending")
   isDemo Boolean @default(false)
   createdAt DateTime @default(now())

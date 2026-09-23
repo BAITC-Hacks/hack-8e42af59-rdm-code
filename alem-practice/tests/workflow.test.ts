@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import {db} from '../lib/db';
 import {act} from '../lib/actions';
 import {emptyFields} from '../lib/domain';
+import {getData} from '../lib/data';
+import {saveAnalysisDraft,listDrafts} from '../lib/drafts';
+import {PrismaClient} from '@prisma/client';
 after(async()=>{await db.$disconnect()});
 test('publication, low-score proposals, manual multiple selection, milestone and award idempotency',async()=>{
  const business={role:'business',id:'test-business'},student={role:'student',id:'test-team'},other={role:'student',id:'test-other'};
@@ -16,6 +19,8 @@ test('publication, low-score proposals, manual multiple selection, milestone and
  assert.equal((await db.task.findUniqueOrThrow({where:{id:taskId}})).readinessScore,20);
  const proposalPayload={taskId,idea:'Сделаем учебную форму с проверкой полей',plan:['Согласовать поля формы','Создать и проверить форму'],durationDays:7,prototypeUrl:'/demo/prototypes/sample'};
  const first=await act('createProposal',proposalPayload,student),second=await act('createProposal',proposalPayload,other);assert('id'in first&&'id'in second);
+ const retries=await Promise.all(Array.from({length:4},()=>act('createProposal',proposalPayload,student)));assert(retries.every(p=>'id'in p&&p.id===first.id));
+ assert.equal(await db.proposal.count({where:{taskId}}),2);
  await assert.rejects(()=>act('decideProposal',{id:first.id,status:'selected'},student));
  await act('decideProposal',{id:first.id,status:'selected'},business);await act('decideProposal',{id:second.id,status:'selected'},business);
  assert.equal(await db.proposal.count({where:{taskId,status:'selected'}}),2);
@@ -25,9 +30,44 @@ test('publication, low-score proposals, manual multiple selection, milestone and
  await assert.rejects(()=>act('confirmMilestone',{id:milestone.id},business));
  await assert.rejects(()=>act('submitMilestone',{id:milestone.id,result:'Учебный результат готов',resultUrl:'/demo/prototypes/sample'},other));
  await act('submitMilestone',{id:milestone.id,result:'Сделана форма, проверены обязательные поля и отправка',resultUrl:'/demo/prototypes/sample'},student);
- await act('confirmMilestone',{id:milestone.id},business);await act('confirmMilestone',{id:milestone.id},business);
+ await Promise.all(Array.from({length:4},()=>act('confirmMilestone',{id:milestone.id},business)));
+ await act('confirmMilestone',{id:milestone.id},business);
  assert.equal((await db.team.findUniqueOrThrow({where:{id:student.id}})).practicePoints,50);assert.equal(await db.award.count({where:{milestoneId:milestone.id}}),1);
  await act('updateTask',{id:taskId,task:{...payload,fields:{...payload.fields,context:'Изменённый контекст задачи'}}},business);
  assert.equal((await db.task.findUniqueOrThrow({where:{id:taskId}})).readinessScore,10);
+ assert(!(await getData()).tasks.some(t=>t.id===taskId));
+ await assert.rejects(()=>act('publishTask',{id:taskId},business));
+ await act('confirmTask',{id:taskId},business);await act('publishTask',{id:taskId},business);
+ assert((await getData()).tasks.some(t=>t.id===taskId&&t.readinessScore===20));
  assert.equal(await db.proposal.count({where:{taskId}}),2);
+ const fresh=new PrismaClient();try{assert.equal((await fresh.team.findUniqueOrThrow({where:{id:student.id}})).practicePoints,50);assert.equal((await fresh.task.findUniqueOrThrow({where:{id:taskId}})).publicationStatus,'published');}finally{await fresh.$disconnect();}
+});
+
+test('concurrent first proposal submissions, ownership, invalid IDs and safe URLs',async()=>{
+ const business={role:'business',id:'retry-business'},student={role:'student',id:'retry-team'};
+ await db.business.create({data:{id:business.id,name:'Retry business',industry:'Testing',contact:'test@example.org'}});
+ await db.team.create({data:{id:student.id,name:'Retry team',interests:'[]',skills:'[]',technologies:'[]',memberCount:1,bio:''}});
+ const payload={title:'Retry task',topic:'Testing',fields:{...emptyFields(),need:'Create a test form'},learning:{skills:[],prerequisites:[],portfolio:'',difficulty:'Basic'}};
+ const task=await act('createTask',payload,business);assert('id'in task);
+ const proposal={taskId:task.id,idea:'Create a validated form',plan:['Build the form'],durationDays:2,prototypeUrl:'https://example.org/prototype'};
+ await assert.rejects(()=>act('createProposal',proposal,student));
+ await assert.rejects(()=>act('createProposal',{...proposal,taskId:'missing'},student),{status:404});
+ await assert.rejects(()=>act('createProposal',proposal,{role:'student',id:'missing'}),{status:403});
+ await act('confirmTask',{id:task.id},business);await act('publishTask',{id:task.id},business);
+ const results=await Promise.all(Array.from({length:4},()=>act('createProposal',proposal,student)));
+ assert.equal(new Set(results.map(p=>'id'in p?p.id:'')).size,1);assert.equal(await db.proposal.count({where:{taskId:task.id}}),1);
+ for(const prototypeUrl of ['javascript:alert(1)','data:text/html,hello','ftp://example.org','//evil.example','https://user:pass@example.org'])await assert.rejects(()=>act('createProposal',{...proposal,prototypeUrl},student));
+ await act('createProposal',{...proposal,idea:'A different useful approach'},student);assert.equal(await db.proposal.count({where:{taskId:task.id}}),2);
+ await assert.rejects(()=>act('createTask',{...payload,readinessScore:100},business));
+ await assert.rejects(()=>act('confirmTask',{id:task.id},{role:'business',id:'test-business'}),{status:403});
+});
+
+test('AI draft text and answers persist, are owner-scoped, and retries do not erase answers',async()=>{
+ const input={mode:'questions' as const,draft:{id:'draft',text:'Persist this original business description',industry:'Testing'},answers:[]};
+ const saved=await saveAnalysisDraft('retry-business',input);
+ const card={...input,mode:'card' as const,answers:[{id:'a1',questionId:'q-data',text:'A synthetic CSV file'}]};
+ assert.equal((await saveAnalysisDraft('retry-business',card)).id,saved.id);
+ await saveAnalysisDraft('retry-business',input);
+ const draft=(await listDrafts('retry-business')).find(d=>d.id===saved.id);assert(draft);assert.equal(draft.answers[0].text,'A synthetic CSV file');
+ assert(!(await listDrafts('test-business')).some(d=>d.id===saved.id));
 });

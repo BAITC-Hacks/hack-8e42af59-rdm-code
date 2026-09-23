@@ -12,7 +12,9 @@
     "db:migrate": "node scripts/prepare-db.mjs && prisma migrate deploy",
     "db:seed": "tsx prisma/seed.ts",
     "setup": "npm run db:generate && npm run db:migrate && npm run db:seed",
-    "test": "node scripts/test.mjs"
+    "test": "node scripts/test.mjs",
+    "test:http": "node scripts/test-http.mjs",
+    "ai:check": "tsx scripts/check-ai.ts"
   },
   "dependencies": {
     "@prisma/client": "6.19.2",
