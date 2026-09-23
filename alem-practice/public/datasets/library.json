@@ -1,0 +1,276 @@
+{
+  "isSynthetic": true,
+  "description": "Вымышленный каталог для учебных проектов; это не реальные сведения о книгах или читателях.",
+  "books": [
+    {
+      "id": "book-1",
+      "title": "Основы Python: учебный пример 1",
+      "author": "Учебный автор 1",
+      "subject": "Programming",
+      "copies": 2,
+      "available": 0,
+      "loansLastMonth": 5
+    },
+    {
+      "id": "book-2",
+      "title": "Математика в проектах: учебный пример 1",
+      "author": "Учебный автор 2",
+      "subject": "Math",
+      "copies": 3,
+      "available": 1,
+      "loansLastMonth": 12
+    },
+    {
+      "id": "book-3",
+      "title": "Дизайн интерфейсов: учебный пример 1",
+      "author": "Учебный автор 3",
+      "subject": "Design",
+      "copies": 4,
+      "available": 2,
+      "loansLastMonth": 19
+    },
+    {
+      "id": "book-4",
+      "title": "Понимание данных: учебный пример 1",
+      "author": "Учебный автор 4",
+      "subject": "Data",
+      "copies": 5,
+      "available": 0,
+      "loansLastMonth": 26
+    },
+    {
+      "id": "book-5",
+      "title": "Экология кампуса: учебный пример 1",
+      "author": "Учебный автор 5",
+      "subject": "Ecology",
+      "copies": 2,
+      "available": 1,
+      "loansLastMonth": 33
+    },
+    {
+      "id": "book-6",
+      "title": "Основы Python: учебный пример 2",
+      "author": "Учебный автор 6",
+      "subject": "Programming",
+      "copies": 3,
+      "available": 2,
+      "loansLastMonth": 40
+    },
+    {
+      "id": "book-7",
+      "title": "Математика в проектах: учебный пример 2",
+      "author": "Учебный автор 7",
+      "subject": "Math",
+      "copies": 4,
+      "available": 0,
+      "loansLastMonth": 47
+    },
+    {
+      "id": "book-8",
+      "title": "Дизайн интерфейсов: учебный пример 2",
+      "author": "Учебный автор 1",
+      "subject": "Design",
+      "copies": 5,
+      "available": 1,
+      "loansLastMonth": 54
+    },
+    {
+      "id": "book-9",
+      "title": "Понимание данных: учебный пример 2",
+      "author": "Учебный автор 2",
+      "subject": "Data",
+      "copies": 2,
+      "available": 2,
+      "loansLastMonth": 61
+    },
+    {
+      "id": "book-10",
+      "title": "Экология кампуса: учебный пример 2",
+      "author": "Учебный автор 3",
+      "subject": "Ecology",
+      "copies": 3,
+      "available": 0,
+      "loansLastMonth": 8
+    },
+    {
+      "id": "book-11",
+      "title": "Основы Python: учебный пример 3",
+      "author": "Учебный автор 4",
+      "subject": "Programming",
+      "copies": 4,
+      "available": 1,
+      "loansLastMonth": 15
+    },
+    {
+      "id": "book-12",
+      "title": "Математика в проектах: учебный пример 3",
+      "author": "Учебный автор 5",
+      "subject": "Math",
+      "copies": 5,
+      "available": 2,
+      "loansLastMonth": 22
+    },
+    {
+      "id": "book-13",
+      "title": "Дизайн интерфейсов: учебный пример 3",
+      "author": "Учебный автор 6",
+      "subject": "Design",
+      "copies": 2,
+      "available": 0,
+      "loansLastMonth": 29
+    },
+    {
+      "id": "book-14",
+      "title": "Понимание данных: учебный пример 3",
+      "author": "Учебный автор 7",
+      "subject": "Data",
+      "copies": 3,
+      "available": 1,
+      "loansLastMonth": 36
+    },
+    {
+      "id": "book-15",
+      "title": "Экология кампуса: учебный пример 3",
+      "author": "Учебный автор 1",
+      "subject": "Ecology",
+      "copies": 4,
+      "available": 2,
+      "loansLastMonth": 43
+    },
+    {
+      "id": "book-16",
+      "title": "Основы Python: учебный пример 4",
+      "author": "Учебный автор 2",
+      "subject": "Programming",
+      "copies": 5,
+      "available": 0,
+      "loansLastMonth": 50
+    },
+    {
+      "id": "book-17",
+      "title": "Математика в проектах: учебный пример 4",
+      "author": "Учебный автор 3",
+      "subject": "Math",
+      "copies": 2,
+      "available": 1,
+      "loansLastMonth": 57
+    },
+    {
+      "id": "book-18",
+      "title": "Дизайн интерфейсов: учебный пример 4",
+      "author": "Учебный автор 4",
+      "subject": "Design",
+      "copies": 3,
+      "available": 2,
+      "loansLastMonth": 64
+    },
+    {
+      "id": "book-19",
+      "title": "Понимание данных: учебный пример 4",
+      "author": "Учебный автор 5",
+      "subject": "Data",
+      "copies": 4,
+      "available": 0,
+      "loansLastMonth": 11
+    },
+    {
+      "id": "book-20",
+      "title": "Экология кампуса: учебный пример 4",
+      "author": "Учебный автор 6",
+      "subject": "Ecology",
+      "copies": 5,
+      "available": 1,
+      "loansLastMonth": 18
+    },
+    {
+      "id": "book-21",
+      "title": "Основы Python: учебный пример 5",
+      "author": "Учебный автор 7",
+      "subject": "Programming",
+      "copies": 2,
+      "available": 2,
+      "loansLastMonth": 25
+    },
+    {
+      "id": "book-22",
+      "title": "Математика в проектах: учебный пример 5",
+      "author": "Учебный автор 1",
+      "subject": "Math",
+      "copies": 3,
+      "available": 0,
+      "loansLastMonth": 32
+    },
+    {
+      "id": "book-23",
+      "title": "Дизайн интерфейсов: учебный пример 5",
+      "author": "Учебный автор 2",
+      "subject": "Design",
+      "copies": 4,
+      "available": 1,
+      "loansLastMonth": 39
+    },
+    {
+      "id": "book-24",
+      "title": "Понимание данных: учебный пример 5",
+      "author": "Учебный автор 3",
+      "subject": "Data",
+      "copies": 5,
+      "available": 2,
+      "loansLastMonth": 46
+    },
+    {
+      "id": "book-25",
+      "title": "Экология кампуса: учебный пример 5",
+      "author": "Учебный автор 4",
+      "subject": "Ecology",
+      "copies": 2,
+      "available": 0,
+      "loansLastMonth": 53
+    },
+    {
+      "id": "book-26",
+      "title": "Основы Python: учебный пример 6",
+      "author": "Учебный автор 5",
+      "subject": "Programming",
+      "copies": 3,
+      "available": 1,
+      "loansLastMonth": 60
+    },
+    {
+      "id": "book-27",
+      "title": "Математика в проектах: учебный пример 6",
+      "author": "Учебный автор 6",
+      "subject": "Math",
+      "copies": 4,
+      "available": 2,
+      "loansLastMonth": 7
+    },
+    {
+      "id": "book-28",
+      "title": "Дизайн интерфейсов: учебный пример 6",
+      "author": "Учебный автор 7",
+      "subject": "Design",
+      "copies": 5,
+      "available": 0,
+      "loansLastMonth": 14
+    },
+    {
+      "id": "book-29",
+      "title": "Понимание данных: учебный пример 6",
+      "author": "Учебный автор 1",
+      "subject": "Data",
+      "copies": 2,
+      "available": 1,
+      "loansLastMonth": 21
+    },
+    {
+      "id": "book-30",
+      "title": "Экология кампуса: учебный пример 6",
+      "author": "Учебный автор 2",
+      "subject": "Ecology",
+      "copies": 3,
+      "available": 2,
+      "loansLastMonth": 28
+    }
+  ]
+}

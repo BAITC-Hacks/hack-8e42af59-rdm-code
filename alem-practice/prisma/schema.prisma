@@ -91,3 +91,46 @@ model Award {
   points Int @default(50)
   createdAt DateTime @default(now())
 }
+
+model User {
+  id String @id @default(cuid())
+  phone String
+  provider String
+  role String
+  actorId String @unique
+  name String
+  bio String @default("")
+  location String @default("")
+  education String @default("")
+  skills String @default("[]")
+  website String @default("")
+  publicProfile Boolean @default(false)
+  createdAt DateTime @default(now())
+  sessions Session[]
+  @@unique([phone, provider])
+}
+
+model Session {
+  tokenHash String @id
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+}
+
+model AuthChallenge {
+  id String @id @default(cuid())
+  phone String
+  provider String
+  codeHash String
+  attempts Int @default(0)
+  expiresAt DateTime
+  consumedAt DateTime?
+  createdAt DateTime @default(now())
+  @@index([phone, provider, createdAt])
+}
+
+model RateBucket {
+  id String @id
+  count Int @default(1)
+  expiresAt DateTime
+}

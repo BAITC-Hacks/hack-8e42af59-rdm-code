@@ -23,4 +23,6 @@ export type TaskView={id:string;ownerId:string;ownerName:string;title:string;top
 export type BusinessView={id:string;name:string;industry:string};
 export type TeamView={id:string;name:string;interests:string[];skills:string[];technologies:string[];bio:string;memberCount:number;practicePoints:number};
 export type ProposalView={id:string;taskId:string;taskTitle:string;ownerId:string;teamId:string;teamName:string;idea:string;plan:string[];durationDays:number;prototypeUrl:string;assumptions:string;status:string;milestone:null|{id:string;status:string;result:string;resultUrl:string}};
-export type AppData={tasks:TaskView[];businesses:BusinessView[];teams:TeamView[];proposals:ProposalView[];aiMode:string};
+export type PublicProfile={id:string;actorId:string;name:string;role:string;bio:string;location:string;education:string;skills:string[];website:string;isTest:boolean};
+export type OwnProfile=PublicProfile&{phone:string;publicProfile:boolean};
+export type AppData={tasks:(TaskView&{isDemo:boolean})[];businesses:BusinessView[];teams:(TeamView&{isDemo:boolean})[];proposals:ProposalView[];profiles:PublicProfile[];me:OwnProfile|null;aiMode:string;authMode:string};
