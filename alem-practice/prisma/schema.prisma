@@ -98,8 +98,10 @@ model Award {
 
 model User {
   id String @id @default(cuid())
-  phone String
+  phone String?
   provider String
+  username String? @unique
+  passwordHash String?
   role String
   actorId String @unique
   name String
