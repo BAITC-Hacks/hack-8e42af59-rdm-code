@@ -1,0 +1,471 @@
+[
+  {
+    "id": "task-001",
+    "draftId": "draft-001",
+    "ownerId": "biz-001",
+    "title": "Прогноз закупок для небольшого кафе",
+    "topic": "Анализ данных",
+    "publicationStatus": "published",
+    "confirmedFields": [
+      "context",
+      "need"
+    ],
+    "learning": {
+      "skills": [
+        "Очистка данных",
+        "Прогнозирование",
+        "Проверка гипотез"
+      ],
+      "prerequisites": [
+        "Python или JavaScript",
+        "Основы статистики"
+      ],
+      "portfolio": "Отчёт с базовой моделью, метрикой и прототипом рекомендаций закупки",
+      "difficulty": "Средняя"
+    },
+    "isSynthetic": true,
+    "createdAt": "2026-09-23T01:00:00Z",
+    "context": "Кафе ежедневно закупает продукты; часть остаётся непроданной и списывается.",
+    "need": "Помочь управляющему планировать закупки по ожидаемому спросу.",
+    "data": null,
+    "expectedResult": null,
+    "successCriteria": null,
+    "constraints": null,
+    "users": null,
+    "contact": null,
+    "collaboration": null,
+    "readinessScore": 20,
+    "readinessLevel": "draft",
+    "scoreBreakdown": [
+      {
+        "field": "context",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "need",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "data",
+        "maxPoints": 20,
+        "points": 0
+      },
+      {
+        "field": "expectedResult",
+        "maxPoints": 15,
+        "points": 0
+      },
+      {
+        "field": "successCriteria",
+        "maxPoints": 15,
+        "points": 0
+      },
+      {
+        "field": "constraints",
+        "maxPoints": 10,
+        "points": 0
+      },
+      {
+        "field": "users",
+        "maxPoints": 10,
+        "points": 0
+      },
+      {
+        "field": "contact",
+        "maxPoints": 5,
+        "points": 0
+      },
+      {
+        "field": "collaboration",
+        "maxPoints": 5,
+        "points": 0
+      }
+    ],
+    "missingFields": [
+      "data",
+      "expectedResult",
+      "successCriteria",
+      "constraints",
+      "users",
+      "contact",
+      "collaboration"
+    ]
+  },
+  {
+    "id": "task-002",
+    "draftId": "draft-002",
+    "ownerId": "biz-002",
+    "title": "Запись на консультации учебного центра",
+    "topic": "Веб-разработка",
+    "publicationStatus": "published",
+    "confirmedFields": [
+      "context",
+      "need",
+      "expectedResult"
+    ],
+    "learning": {
+      "skills": [
+        "Проектирование форм",
+        "CRUD",
+        "Валидация"
+      ],
+      "prerequisites": [
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "portfolio": "Веб-приложение с формой записи и кабинетом администратора",
+      "difficulty": "Начальная"
+    },
+    "isSynthetic": true,
+    "createdAt": "2026-09-23T02:00:00Z",
+    "context": "Учебный центр собирает заявки на консультации в разных переписках и теряет часть записей.",
+    "need": "Собрать заявки в одном месте и сделать их статусы понятными администратору.",
+    "data": null,
+    "expectedResult": "Веб-форма записи и кабинет администратора со списком заявок.",
+    "successCriteria": null,
+    "constraints": null,
+    "users": null,
+    "contact": null,
+    "collaboration": null,
+    "readinessScore": 35,
+    "readinessLevel": "draft",
+    "scoreBreakdown": [
+      {
+        "field": "context",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "need",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "data",
+        "maxPoints": 20,
+        "points": 0
+      },
+      {
+        "field": "expectedResult",
+        "maxPoints": 15,
+        "points": 15
+      },
+      {
+        "field": "successCriteria",
+        "maxPoints": 15,
+        "points": 0
+      },
+      {
+        "field": "constraints",
+        "maxPoints": 10,
+        "points": 0
+      },
+      {
+        "field": "users",
+        "maxPoints": 10,
+        "points": 0
+      },
+      {
+        "field": "contact",
+        "maxPoints": 5,
+        "points": 0
+      },
+      {
+        "field": "collaboration",
+        "maxPoints": 5,
+        "points": 0
+      }
+    ],
+    "missingFields": [
+      "data",
+      "successCriteria",
+      "constraints",
+      "users",
+      "contact",
+      "collaboration"
+    ]
+  },
+  {
+    "id": "task-003",
+    "draftId": "draft-003",
+    "ownerId": "biz-003",
+    "title": "Поиск учебных материалов в библиотеке",
+    "topic": "Поиск и UX",
+    "publicationStatus": "published",
+    "confirmedFields": [
+      "context",
+      "need",
+      "data",
+      "expectedResult",
+      "constraints"
+    ],
+    "learning": {
+      "skills": [
+        "Информационный поиск",
+        "Проектирование фильтров",
+        "UX-проверка"
+      ],
+      "prerequisites": [
+        "JavaScript",
+        "Работа с JSON"
+      ],
+      "portfolio": "Поисковый каталог и результаты проверки релевантности",
+      "difficulty": "Средняя"
+    },
+    "isSynthetic": true,
+    "createdAt": "2026-09-23T03:00:00Z",
+    "context": "Описания учебных материалов находятся в таблице, поиск подходящей литературы требует ручного просмотра.",
+    "need": "Помочь студентам находить материалы по предмету и теме.",
+    "data": "100 синтетических библиографических записей: название, автор, предмет и теги. Полные тексты книг не используются.",
+    "expectedResult": "Каталог с поиском и фильтрами по предмету и типу материала.",
+    "successCriteria": null,
+    "constraints": "2 недели; использовать открытые метаданные; не загружать защищённые тексты книг.",
+    "users": null,
+    "contact": null,
+    "collaboration": null,
+    "readinessScore": 65,
+    "readinessLevel": "working",
+    "scoreBreakdown": [
+      {
+        "field": "context",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "need",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "data",
+        "maxPoints": 20,
+        "points": 20
+      },
+      {
+        "field": "expectedResult",
+        "maxPoints": 15,
+        "points": 15
+      },
+      {
+        "field": "successCriteria",
+        "maxPoints": 15,
+        "points": 0
+      },
+      {
+        "field": "constraints",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "users",
+        "maxPoints": 10,
+        "points": 0
+      },
+      {
+        "field": "contact",
+        "maxPoints": 5,
+        "points": 0
+      },
+      {
+        "field": "collaboration",
+        "maxPoints": 5,
+        "points": 0
+      }
+    ],
+    "missingFields": [
+      "successCriteria",
+      "users",
+      "contact",
+      "collaboration"
+    ]
+  },
+  {
+    "id": "task-004",
+    "draftId": "draft-004",
+    "ownerId": "biz-004",
+    "title": "Анализ причин возвратов интернет-магазина",
+    "topic": "Бизнес-аналитика",
+    "publicationStatus": "published",
+    "confirmedFields": [
+      "context",
+      "need",
+      "data",
+      "expectedResult",
+      "constraints",
+      "users",
+      "contact",
+      "collaboration"
+    ],
+    "learning": {
+      "skills": [
+        "Классификация текстов",
+        "Визуализация",
+        "Метрики качества"
+      ],
+      "prerequisites": [
+        "Python",
+        "Основы анализа данных"
+      ],
+      "portfolio": "Отчёт по причинам возвратов с проверкой качества классификации",
+      "difficulty": "Средняя"
+    },
+    "isSynthetic": true,
+    "createdAt": "2026-09-23T04:00:00Z",
+    "context": "Интернет-магазин вручную анализирует текстовые причины возвратов и не видит повторяющиеся проблемы.",
+    "need": "Сгруппировать причины возвратов и показать наиболее частые проблемы по категориям товаров.",
+    "data": "200 синтетических записей: категория товара, текст причины, дата возврата; без данных покупателей.",
+    "expectedResult": "Интерактивный отчёт с группами причин и фильтрами по категории и периоду.",
+    "successCriteria": null,
+    "constraints": "2 недели; без данных покупателей; результат должен открываться локально.",
+    "users": "Менеджер качества интернет-магазина.",
+    "contact": "demo4@example.org",
+    "collaboration": "Обсуждение по средам 20 минут; письменная обратная связь за 2 рабочих дня.",
+    "readinessScore": 85,
+    "readinessLevel": "ready",
+    "scoreBreakdown": [
+      {
+        "field": "context",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "need",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "data",
+        "maxPoints": 20,
+        "points": 20
+      },
+      {
+        "field": "expectedResult",
+        "maxPoints": 15,
+        "points": 15
+      },
+      {
+        "field": "successCriteria",
+        "maxPoints": 15,
+        "points": 0
+      },
+      {
+        "field": "constraints",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "users",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "contact",
+        "maxPoints": 5,
+        "points": 5
+      },
+      {
+        "field": "collaboration",
+        "maxPoints": 5,
+        "points": 5
+      }
+    ],
+    "missingFields": [
+      "successCriteria"
+    ]
+  },
+  {
+    "id": "task-005",
+    "draftId": "draft-005",
+    "ownerId": "biz-005",
+    "title": "Учебный симулятор сортировки отходов",
+    "topic": "Образовательные технологии",
+    "publicationStatus": "published",
+    "confirmedFields": [
+      "context",
+      "need",
+      "data",
+      "expectedResult",
+      "successCriteria",
+      "constraints",
+      "users",
+      "contact",
+      "collaboration"
+    ],
+    "learning": {
+      "skills": [
+        "Учебный UX",
+        "Моделирование состояний",
+        "Тестирование сценариев"
+      ],
+      "prerequisites": [
+        "JavaScript",
+        "Основы интерфейсов"
+      ],
+      "portfolio": "Образовательный тренажёр с объяснениями и проверенными сценариями",
+      "difficulty": "Начальная"
+    },
+    "isSynthetic": true,
+    "createdAt": "2026-09-23T05:00:00Z",
+    "context": "На вводном занятии кампуса правила сортировки объясняются устно; новичкам трудно применять их к конкретным предметам.",
+    "need": "Дать первокурсникам возможность потренироваться на бытовых ситуациях и получить объяснение ошибок.",
+    "data": "30 синтетических карточек предметов с категорией контейнера и объяснением; учебные правила проверяет куратор.",
+    "expectedResult": "Веб-тренажёр из 10 ситуаций с обратной связью и итогом попытки.",
+    "successCriteria": "Все 10 эталонных сценариев корректны; после каждого неверного ответа показано объяснение; попытку можно пройти заново.",
+    "constraints": "10 дней; без регистрации и персональных данных; правила только из подтверждённого учебного набора.",
+    "users": "Первокурсники и куратор экологического клуба.",
+    "contact": "demo5@example.org",
+    "collaboration": "Куратор проверяет учебные правила до демонстрации и отвечает на вопросы в течение 2 дней.",
+    "readinessScore": 100,
+    "readinessLevel": "priority",
+    "scoreBreakdown": [
+      {
+        "field": "context",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "need",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "data",
+        "maxPoints": 20,
+        "points": 20
+      },
+      {
+        "field": "expectedResult",
+        "maxPoints": 15,
+        "points": 15
+      },
+      {
+        "field": "successCriteria",
+        "maxPoints": 15,
+        "points": 15
+      },
+      {
+        "field": "constraints",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "users",
+        "maxPoints": 10,
+        "points": 10
+      },
+      {
+        "field": "contact",
+        "maxPoints": 5,
+        "points": 5
+      },
+      {
+        "field": "collaboration",
+        "maxPoints": 5,
+        "points": 5
+      }
+    ],
+    "missingFields": []
+  }
+]

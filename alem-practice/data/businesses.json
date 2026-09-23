@@ -1,0 +1,37 @@
+[
+  {
+    "id": "biz-001",
+    "name": "Qadam Cafe",
+    "industry": "Общественное питание",
+    "contact": "demo1@example.org",
+    "isSynthetic": true
+  },
+  {
+    "id": "biz-002",
+    "name": "Bilim Lab",
+    "industry": "Дополнительное образование",
+    "contact": "demo2@example.org",
+    "isSynthetic": true
+  },
+  {
+    "id": "biz-003",
+    "name": "Kitap Hub",
+    "industry": "Библиотечные сервисы",
+    "contact": "demo3@example.org",
+    "isSynthetic": true
+  },
+  {
+    "id": "biz-004",
+    "name": "Dala Shop",
+    "industry": "Электронная торговля",
+    "contact": "demo4@example.org",
+    "isSynthetic": true
+  },
+  {
+    "id": "biz-005",
+    "name": "Eco Campus",
+    "industry": "Экологическое просвещение",
+    "contact": "demo5@example.org",
+    "isSynthetic": true
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "id": "proposal-001",
+    "taskId": "task-001",
+    "teamId": "team-001",
+    "idea": "Начнём с анализа списаний и простого прогноза спроса по дням недели.",
+    "plan": [
+      "Уточнить наличие и структуру данных",
+      "Сравнить среднее за неделю с прогнозом по дням недели",
+      "Показать рекомендации закупки и ошибки прогноза"
+    ],
+    "durationDays": 14,
+    "assumptions": "В задаче пока нет данных и критериев: согласуем их с бизнесом до работы.",
+    "prototypeUrl": "/demo/prototypes/proposal-001",
+    "prototypeKind": "internal_demo_placeholder",
+    "status": "pending",
+    "isSynthetic": true
+  },
+  {
+    "id": "proposal-002",
+    "taskId": "task-001",
+    "teamId": "team-004",
+    "idea": "Сначала построим отчёт о списаниях, затем добавим прозрачный базовый прогноз.",
+    "plan": [
+      "Уточнить доступные данные и показатель успеха",
+      "Собрать отчёт по товарам",
+      "Сравнить прогноз с базовым вариантом и показать ограничения"
+    ],
+    "durationDays": 12,
+    "assumptions": "Доступ к данным и критерии приёмки пока не подтверждены.",
+    "prototypeUrl": "/demo/prototypes/proposal-002",
+    "prototypeKind": "internal_demo_placeholder",
+    "status": "pending",
+    "isSynthetic": true
+  },
+  {
+    "id": "proposal-003",
+    "taskId": "task-002",
+    "teamId": "team-002",
+    "idea": "Сделаем форму заявки и кабинет администратора с изменением статусов.",
+    "plan": [
+      "Согласовать поля заявки и тестовые записи",
+      "Реализовать форму и хранение",
+      "Проверить путь от заявки до обработанного обращения"
+    ],
+    "durationDays": 10,
+    "assumptions": "Срок предложен командой; ограничения и контакт нужно уточнить у бизнеса.",
+    "prototypeUrl": "/demo/prototypes/proposal-003",
+    "prototypeKind": "internal_demo_placeholder",
+    "status": "pending",
+    "isSynthetic": true
+  },
+  {
+    "id": "proposal-004",
+    "taskId": "task-003",
+    "teamId": "team-003",
+    "idea": "Сделаем каталог с поиском по названию и тегам, затем проверим выдачу на примерах.",
+    "plan": [
+      "Импортировать синтетические записи",
+      "Добавить поиск и фильтры",
+      "Согласовать запросы для проверки и провести UX-проверку"
+    ],
+    "durationDays": 14,
+    "assumptions": "Окончательные критерии релевантности и контакт ещё нужно подтвердить.",
+    "prototypeUrl": "/demo/prototypes/proposal-004",
+    "prototypeKind": "internal_demo_placeholder",
+    "status": "pending",
+    "isSynthetic": true
+  },
+  {
+    "id": "proposal-005",
+    "taskId": "task-005",
+    "teamId": "team-005",
+    "idea": "Создадим тренажёр с выбором контейнера и объяснением после каждого ответа.",
+    "plan": [
+      "Согласовать 10 ситуаций с куратором",
+      "Собрать интерфейс упражнения",
+      "Проверить эталонные сценарии и повтор попытки"
+    ],
+    "durationDays": 10,
+    "assumptions": "Используем только подтверждённые куратором правила учебного набора.",
+    "prototypeUrl": "/demo/prototypes/proposal-005",
+    "prototypeKind": "internal_demo_placeholder",
+    "status": "pending",
+    "isSynthetic": true
+  }
+]

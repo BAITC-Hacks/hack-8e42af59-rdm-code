@@ -1,0 +1,12 @@
+import {DatabaseSync} from 'node:sqlite';
+import {mkdirSync,readFileSync,readdirSync,rmSync} from 'node:fs';
+import {resolve,join} from 'node:path';
+import {spawnSync} from 'node:child_process';
+const directory=resolve('tests/.tmp');mkdirSync(directory,{recursive:true});
+const file=join(directory,`test-${Date.now()}.db`);
+const sqlite=new DatabaseSync(file);
+for(const name of readdirSync('prisma/migrations').filter(n=>n!=='migration_lock.toml').sort())sqlite.exec(readFileSync(`prisma/migrations/${name}/migration.sql`,'utf8'));
+sqlite.close();
+const result=spawnSync(process.execPath,['node_modules/tsx/dist/cli.mjs','--test','tests/domain.test.ts','tests/workflow.test.ts'],{stdio:'inherit',env:{...process.env,DATABASE_URL:`file:${file.replaceAll('\\','/')}`}});
+rmSync(file,{force:true});
+process.exitCode=result.status??1;

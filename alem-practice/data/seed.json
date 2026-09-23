@@ -1,0 +1,793 @@
+{
+  "schemaVersion": 1,
+  "isSynthetic": true,
+  "metadata": {
+    "source": "Синтетические данные для кейса HackAlem AI Sana",
+    "ratingWeights": {
+      "context": 10,
+      "need": 10,
+      "data": 20,
+      "expectedResult": 15,
+      "successCriteria": 15,
+      "constraints": 10,
+      "users": 10,
+      "contact": 5,
+      "collaboration": 5
+    },
+    "prototypeLinks": "Внутренние маршруты-заглушки; будущий MVP должен реализовать страницы и маркировать их как учебные макеты."
+  },
+  "businesses": [
+    {
+      "id": "biz-001",
+      "name": "Qadam Cafe",
+      "industry": "Общественное питание",
+      "contact": "demo1@example.org",
+      "isSynthetic": true
+    },
+    {
+      "id": "biz-002",
+      "name": "Bilim Lab",
+      "industry": "Дополнительное образование",
+      "contact": "demo2@example.org",
+      "isSynthetic": true
+    },
+    {
+      "id": "biz-003",
+      "name": "Kitap Hub",
+      "industry": "Библиотечные сервисы",
+      "contact": "demo3@example.org",
+      "isSynthetic": true
+    },
+    {
+      "id": "biz-004",
+      "name": "Dala Shop",
+      "industry": "Электронная торговля",
+      "contact": "demo4@example.org",
+      "isSynthetic": true
+    },
+    {
+      "id": "biz-005",
+      "name": "Eco Campus",
+      "industry": "Экологическое просвещение",
+      "contact": "demo5@example.org",
+      "isSynthetic": true
+    }
+  ],
+  "drafts": [
+    {
+      "id": "draft-001",
+      "businessId": "biz-001",
+      "text": "У нас кафе. Продукты иногда остаются и портятся. Хотим понять, сколько закупать.",
+      "industry": "Общественное питание",
+      "completeness": "minimal",
+      "suggestedQuestions": [
+        "Какие данные о продажах и списаниях доступны?",
+        "Что должен получить управляющий в результате?",
+        "По какому измеримому критерию вы примете прототип?"
+      ],
+      "isSynthetic": true
+    },
+    {
+      "id": "draft-002",
+      "businessId": "biz-002",
+      "text": "Учебный центр записывает учеников на консультации в переписке, иногда записи теряются. Нужна веб-форма записи и список заявок.",
+      "industry": "Дополнительное образование",
+      "completeness": "partial",
+      "suggestedQuestions": [
+        "Кто будет обрабатывать заявки?",
+        "Какие примеры заявок можно использовать?",
+        "Какие сценарии должны работать для приёмки?"
+      ],
+      "isSynthetic": true
+    },
+    {
+      "id": "draft-003",
+      "businessId": "biz-003",
+      "text": "Библиотека хранит описания материалов в таблице. Студентам трудно искать литературу по теме. Есть 100 синтетических записей: название, автор, предмет, теги. Нужен каталог с поиском; пользователи — студенты и библиотекарь. Срок — 2 недели, только открытые метаданные.",
+      "industry": "Библиотечные сервисы",
+      "completeness": "medium",
+      "suggestedQuestions": [
+        "Какие поисковые запросы считаются успешными?",
+        "Кто подтвердит качество выдачи?",
+        "Как связаться с представителем библиотеки?"
+      ],
+      "isSynthetic": true
+    },
+    {
+      "id": "draft-004",
+      "businessId": "biz-004",
+      "text": "Магазин вручную читает причины возвратов. Есть синтетическая таблица 200 возвратов с категорией товара, причиной и датой. Нужен отчёт с группами причин для менеджера качества. Срок 2 недели, без данных покупателей. Контакт demo4@example.org; встреча по средам, комментарии за 2 рабочих дня.",
+      "industry": "Электронная торговля",
+      "completeness": "detailed",
+      "suggestedQuestions": [
+        "Какая точность группировки достаточна для приёмки?",
+        "Кто разметит примеры причин для проверки?",
+        "Какие ошибки классификации наиболее критичны?"
+      ],
+      "isSynthetic": true
+    },
+    {
+      "id": "draft-005",
+      "businessId": "biz-005",
+      "text": "Кампус проводит вводное занятие по сортировке отходов. Нужен тренажёр из 10 ситуаций для первокурсников. Есть 30 синтетических предметов с категориями и объяснениями. Критерий: 10 из 10 эталонных сценариев корректны, после ошибки показано объяснение. Срок 10 дней, без регистрации. Контакт demo5@example.org; куратор проверит материалы и даст обратную связь за 2 дня.",
+      "industry": "Экологическое просвещение",
+      "completeness": "complete",
+      "suggestedQuestions": [
+        "Какие спорные предметы стоит добавить в тренажёр?",
+        "Как куратор проверит понятность объяснений?",
+        "Какой экран должен показываться после завершения попытки?"
+      ],
+      "isSynthetic": true
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-001",
+      "draftId": "draft-001",
+      "ownerId": "biz-001",
+      "title": "Прогноз закупок для небольшого кафе",
+      "topic": "Анализ данных",
+      "publicationStatus": "published",
+      "confirmedFields": [
+        "context",
+        "need"
+      ],
+      "learning": {
+        "skills": [
+          "Очистка данных",
+          "Прогнозирование",
+          "Проверка гипотез"
+        ],
+        "prerequisites": [
+          "Python или JavaScript",
+          "Основы статистики"
+        ],
+        "portfolio": "Отчёт с базовой моделью, метрикой и прототипом рекомендаций закупки",
+        "difficulty": "Средняя"
+      },
+      "isSynthetic": true,
+      "createdAt": "2026-09-23T01:00:00Z",
+      "context": "Кафе ежедневно закупает продукты; часть остаётся непроданной и списывается.",
+      "need": "Помочь управляющему планировать закупки по ожидаемому спросу.",
+      "data": null,
+      "expectedResult": null,
+      "successCriteria": null,
+      "constraints": null,
+      "users": null,
+      "contact": null,
+      "collaboration": null,
+      "readinessScore": 20,
+      "readinessLevel": "draft",
+      "scoreBreakdown": [
+        {
+          "field": "context",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "need",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "data",
+          "maxPoints": 20,
+          "points": 0
+        },
+        {
+          "field": "expectedResult",
+          "maxPoints": 15,
+          "points": 0
+        },
+        {
+          "field": "successCriteria",
+          "maxPoints": 15,
+          "points": 0
+        },
+        {
+          "field": "constraints",
+          "maxPoints": 10,
+          "points": 0
+        },
+        {
+          "field": "users",
+          "maxPoints": 10,
+          "points": 0
+        },
+        {
+          "field": "contact",
+          "maxPoints": 5,
+          "points": 0
+        },
+        {
+          "field": "collaboration",
+          "maxPoints": 5,
+          "points": 0
+        }
+      ],
+      "missingFields": [
+        "data",
+        "expectedResult",
+        "successCriteria",
+        "constraints",
+        "users",
+        "contact",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "task-002",
+      "draftId": "draft-002",
+      "ownerId": "biz-002",
+      "title": "Запись на консультации учебного центра",
+      "topic": "Веб-разработка",
+      "publicationStatus": "published",
+      "confirmedFields": [
+        "context",
+        "need",
+        "expectedResult"
+      ],
+      "learning": {
+        "skills": [
+          "Проектирование форм",
+          "CRUD",
+          "Валидация"
+        ],
+        "prerequisites": [
+          "HTML/CSS",
+          "JavaScript"
+        ],
+        "portfolio": "Веб-приложение с формой записи и кабинетом администратора",
+        "difficulty": "Начальная"
+      },
+      "isSynthetic": true,
+      "createdAt": "2026-09-23T02:00:00Z",
+      "context": "Учебный центр собирает заявки на консультации в разных переписках и теряет часть записей.",
+      "need": "Собрать заявки в одном месте и сделать их статусы понятными администратору.",
+      "data": null,
+      "expectedResult": "Веб-форма записи и кабинет администратора со списком заявок.",
+      "successCriteria": null,
+      "constraints": null,
+      "users": null,
+      "contact": null,
+      "collaboration": null,
+      "readinessScore": 35,
+      "readinessLevel": "draft",
+      "scoreBreakdown": [
+        {
+          "field": "context",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "need",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "data",
+          "maxPoints": 20,
+          "points": 0
+        },
+        {
+          "field": "expectedResult",
+          "maxPoints": 15,
+          "points": 15
+        },
+        {
+          "field": "successCriteria",
+          "maxPoints": 15,
+          "points": 0
+        },
+        {
+          "field": "constraints",
+          "maxPoints": 10,
+          "points": 0
+        },
+        {
+          "field": "users",
+          "maxPoints": 10,
+          "points": 0
+        },
+        {
+          "field": "contact",
+          "maxPoints": 5,
+          "points": 0
+        },
+        {
+          "field": "collaboration",
+          "maxPoints": 5,
+          "points": 0
+        }
+      ],
+      "missingFields": [
+        "data",
+        "successCriteria",
+        "constraints",
+        "users",
+        "contact",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "task-003",
+      "draftId": "draft-003",
+      "ownerId": "biz-003",
+      "title": "Поиск учебных материалов в библиотеке",
+      "topic": "Поиск и UX",
+      "publicationStatus": "published",
+      "confirmedFields": [
+        "context",
+        "need",
+        "data",
+        "expectedResult",
+        "constraints"
+      ],
+      "learning": {
+        "skills": [
+          "Информационный поиск",
+          "Проектирование фильтров",
+          "UX-проверка"
+        ],
+        "prerequisites": [
+          "JavaScript",
+          "Работа с JSON"
+        ],
+        "portfolio": "Поисковый каталог и результаты проверки релевантности",
+        "difficulty": "Средняя"
+      },
+      "isSynthetic": true,
+      "createdAt": "2026-09-23T03:00:00Z",
+      "context": "Описания учебных материалов находятся в таблице, поиск подходящей литературы требует ручного просмотра.",
+      "need": "Помочь студентам находить материалы по предмету и теме.",
+      "data": "100 синтетических библиографических записей: название, автор, предмет и теги. Полные тексты книг не используются.",
+      "expectedResult": "Каталог с поиском и фильтрами по предмету и типу материала.",
+      "successCriteria": null,
+      "constraints": "2 недели; использовать открытые метаданные; не загружать защищённые тексты книг.",
+      "users": null,
+      "contact": null,
+      "collaboration": null,
+      "readinessScore": 65,
+      "readinessLevel": "working",
+      "scoreBreakdown": [
+        {
+          "field": "context",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "need",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "data",
+          "maxPoints": 20,
+          "points": 20
+        },
+        {
+          "field": "expectedResult",
+          "maxPoints": 15,
+          "points": 15
+        },
+        {
+          "field": "successCriteria",
+          "maxPoints": 15,
+          "points": 0
+        },
+        {
+          "field": "constraints",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "users",
+          "maxPoints": 10,
+          "points": 0
+        },
+        {
+          "field": "contact",
+          "maxPoints": 5,
+          "points": 0
+        },
+        {
+          "field": "collaboration",
+          "maxPoints": 5,
+          "points": 0
+        }
+      ],
+      "missingFields": [
+        "successCriteria",
+        "users",
+        "contact",
+        "collaboration"
+      ]
+    },
+    {
+      "id": "task-004",
+      "draftId": "draft-004",
+      "ownerId": "biz-004",
+      "title": "Анализ причин возвратов интернет-магазина",
+      "topic": "Бизнес-аналитика",
+      "publicationStatus": "published",
+      "confirmedFields": [
+        "context",
+        "need",
+        "data",
+        "expectedResult",
+        "constraints",
+        "users",
+        "contact",
+        "collaboration"
+      ],
+      "learning": {
+        "skills": [
+          "Классификация текстов",
+          "Визуализация",
+          "Метрики качества"
+        ],
+        "prerequisites": [
+          "Python",
+          "Основы анализа данных"
+        ],
+        "portfolio": "Отчёт по причинам возвратов с проверкой качества классификации",
+        "difficulty": "Средняя"
+      },
+      "isSynthetic": true,
+      "createdAt": "2026-09-23T04:00:00Z",
+      "context": "Интернет-магазин вручную анализирует текстовые причины возвратов и не видит повторяющиеся проблемы.",
+      "need": "Сгруппировать причины возвратов и показать наиболее частые проблемы по категориям товаров.",
+      "data": "200 синтетических записей: категория товара, текст причины, дата возврата; без данных покупателей.",
+      "expectedResult": "Интерактивный отчёт с группами причин и фильтрами по категории и периоду.",
+      "successCriteria": null,
+      "constraints": "2 недели; без данных покупателей; результат должен открываться локально.",
+      "users": "Менеджер качества интернет-магазина.",
+      "contact": "demo4@example.org",
+      "collaboration": "Обсуждение по средам 20 минут; письменная обратная связь за 2 рабочих дня.",
+      "readinessScore": 85,
+      "readinessLevel": "ready",
+      "scoreBreakdown": [
+        {
+          "field": "context",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "need",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "data",
+          "maxPoints": 20,
+          "points": 20
+        },
+        {
+          "field": "expectedResult",
+          "maxPoints": 15,
+          "points": 15
+        },
+        {
+          "field": "successCriteria",
+          "maxPoints": 15,
+          "points": 0
+        },
+        {
+          "field": "constraints",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "users",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "contact",
+          "maxPoints": 5,
+          "points": 5
+        },
+        {
+          "field": "collaboration",
+          "maxPoints": 5,
+          "points": 5
+        }
+      ],
+      "missingFields": [
+        "successCriteria"
+      ]
+    },
+    {
+      "id": "task-005",
+      "draftId": "draft-005",
+      "ownerId": "biz-005",
+      "title": "Учебный симулятор сортировки отходов",
+      "topic": "Образовательные технологии",
+      "publicationStatus": "published",
+      "confirmedFields": [
+        "context",
+        "need",
+        "data",
+        "expectedResult",
+        "successCriteria",
+        "constraints",
+        "users",
+        "contact",
+        "collaboration"
+      ],
+      "learning": {
+        "skills": [
+          "Учебный UX",
+          "Моделирование состояний",
+          "Тестирование сценариев"
+        ],
+        "prerequisites": [
+          "JavaScript",
+          "Основы интерфейсов"
+        ],
+        "portfolio": "Образовательный тренажёр с объяснениями и проверенными сценариями",
+        "difficulty": "Начальная"
+      },
+      "isSynthetic": true,
+      "createdAt": "2026-09-23T05:00:00Z",
+      "context": "На вводном занятии кампуса правила сортировки объясняются устно; новичкам трудно применять их к конкретным предметам.",
+      "need": "Дать первокурсникам возможность потренироваться на бытовых ситуациях и получить объяснение ошибок.",
+      "data": "30 синтетических карточек предметов с категорией контейнера и объяснением; учебные правила проверяет куратор.",
+      "expectedResult": "Веб-тренажёр из 10 ситуаций с обратной связью и итогом попытки.",
+      "successCriteria": "Все 10 эталонных сценариев корректны; после каждого неверного ответа показано объяснение; попытку можно пройти заново.",
+      "constraints": "10 дней; без регистрации и персональных данных; правила только из подтверждённого учебного набора.",
+      "users": "Первокурсники и куратор экологического клуба.",
+      "contact": "demo5@example.org",
+      "collaboration": "Куратор проверяет учебные правила до демонстрации и отвечает на вопросы в течение 2 дней.",
+      "readinessScore": 100,
+      "readinessLevel": "priority",
+      "scoreBreakdown": [
+        {
+          "field": "context",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "need",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "data",
+          "maxPoints": 20,
+          "points": 20
+        },
+        {
+          "field": "expectedResult",
+          "maxPoints": 15,
+          "points": 15
+        },
+        {
+          "field": "successCriteria",
+          "maxPoints": 15,
+          "points": 15
+        },
+        {
+          "field": "constraints",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "users",
+          "maxPoints": 10,
+          "points": 10
+        },
+        {
+          "field": "contact",
+          "maxPoints": 5,
+          "points": 5
+        },
+        {
+          "field": "collaboration",
+          "maxPoints": 5,
+          "points": 5
+        }
+      ],
+      "missingFields": []
+    }
+  ],
+  "teams": [
+    {
+      "id": "team-001",
+      "name": "Data Qadam",
+      "interests": [
+        "Анализ данных",
+        "Малый бизнес"
+      ],
+      "skills": [
+        "Очистка данных",
+        "Прогнозирование",
+        "Проверка гипотез"
+      ],
+      "technologies": [
+        "Python",
+        "pandas",
+        "scikit-learn"
+      ],
+      "memberCount": 3,
+      "bio": "Учебная команда, которая хочет применить статистику к операционным задачам.",
+      "practicePoints": 0,
+      "isSynthetic": true
+    },
+    {
+      "id": "team-002",
+      "name": "Web Bilim",
+      "interests": [
+        "Образование",
+        "Веб-сервисы"
+      ],
+      "skills": [
+        "Проектирование форм",
+        "CRUD",
+        "Валидация"
+      ],
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Next.js"
+      ],
+      "memberCount": 4,
+      "bio": "Создаём понятные интерфейсы и учимся доводить пользовательский сценарий до результата.",
+      "practicePoints": 0,
+      "isSynthetic": true
+    },
+    {
+      "id": "team-003",
+      "name": "Search Step",
+      "interests": [
+        "Поиск",
+        "Библиотеки"
+      ],
+      "skills": [
+        "Информационный поиск",
+        "Проектирование фильтров",
+        "UX-проверка"
+      ],
+      "technologies": [
+        "TypeScript",
+        "React",
+        "SQLite"
+      ],
+      "memberCount": 3,
+      "bio": "Интересуемся поиском информации и проверкой удобства интерфейсов.",
+      "practicePoints": 0,
+      "isSynthetic": true
+    },
+    {
+      "id": "team-004",
+      "name": "Insight Lab",
+      "interests": [
+        "Бизнес-аналитика",
+        "Прогнозирование"
+      ],
+      "skills": [
+        "Визуализация",
+        "Метрики качества",
+        "Прогнозирование"
+      ],
+      "technologies": [
+        "Python",
+        "Plotly",
+        "SQL"
+      ],
+      "memberCount": 5,
+      "bio": "Учимся объяснять выводы из данных и сравнивать решения с базовым вариантом.",
+      "practicePoints": 0,
+      "isSynthetic": true
+    },
+    {
+      "id": "team-005",
+      "name": "Green Learn",
+      "interests": [
+        "Образовательные технологии",
+        "Экология"
+      ],
+      "skills": [
+        "Учебный UX",
+        "Моделирование состояний",
+        "Тестирование сценариев"
+      ],
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vitest"
+      ],
+      "memberCount": 4,
+      "bio": "Разрабатываем учебные интерактивы с понятной обратной связью.",
+      "practicePoints": 0,
+      "isSynthetic": true
+    }
+  ],
+  "proposals": [
+    {
+      "id": "proposal-001",
+      "taskId": "task-001",
+      "teamId": "team-001",
+      "idea": "Начнём с анализа списаний и простого прогноза спроса по дням недели.",
+      "plan": [
+        "Уточнить наличие и структуру данных",
+        "Сравнить среднее за неделю с прогнозом по дням недели",
+        "Показать рекомендации закупки и ошибки прогноза"
+      ],
+      "durationDays": 14,
+      "assumptions": "В задаче пока нет данных и критериев: согласуем их с бизнесом до работы.",
+      "prototypeUrl": "/demo/prototypes/proposal-001",
+      "prototypeKind": "internal_demo_placeholder",
+      "status": "pending",
+      "isSynthetic": true
+    },
+    {
+      "id": "proposal-002",
+      "taskId": "task-001",
+      "teamId": "team-004",
+      "idea": "Сначала построим отчёт о списаниях, затем добавим прозрачный базовый прогноз.",
+      "plan": [
+        "Уточнить доступные данные и показатель успеха",
+        "Собрать отчёт по товарам",
+        "Сравнить прогноз с базовым вариантом и показать ограничения"
+      ],
+      "durationDays": 12,
+      "assumptions": "Доступ к данным и критерии приёмки пока не подтверждены.",
+      "prototypeUrl": "/demo/prototypes/proposal-002",
+      "prototypeKind": "internal_demo_placeholder",
+      "status": "pending",
+      "isSynthetic": true
+    },
+    {
+      "id": "proposal-003",
+      "taskId": "task-002",
+      "teamId": "team-002",
+      "idea": "Сделаем форму заявки и кабинет администратора с изменением статусов.",
+      "plan": [
+        "Согласовать поля заявки и тестовые записи",
+        "Реализовать форму и хранение",
+        "Проверить путь от заявки до обработанного обращения"
+      ],
+      "durationDays": 10,
+      "assumptions": "Срок предложен командой; ограничения и контакт нужно уточнить у бизнеса.",
+      "prototypeUrl": "/demo/prototypes/proposal-003",
+      "prototypeKind": "internal_demo_placeholder",
+      "status": "pending",
+      "isSynthetic": true
+    },
+    {
+      "id": "proposal-004",
+      "taskId": "task-003",
+      "teamId": "team-003",
+      "idea": "Сделаем каталог с поиском по названию и тегам, затем проверим выдачу на примерах.",
+      "plan": [
+        "Импортировать синтетические записи",
+        "Добавить поиск и фильтры",
+        "Согласовать запросы для проверки и провести UX-проверку"
+      ],
+      "durationDays": 14,
+      "assumptions": "Окончательные критерии релевантности и контакт ещё нужно подтвердить.",
+      "prototypeUrl": "/demo/prototypes/proposal-004",
+      "prototypeKind": "internal_demo_placeholder",
+      "status": "pending",
+      "isSynthetic": true
+    },
+    {
+      "id": "proposal-005",
+      "taskId": "task-005",
+      "teamId": "team-005",
+      "idea": "Создадим тренажёр с выбором контейнера и объяснением после каждого ответа.",
+      "plan": [
+        "Согласовать 10 ситуаций с куратором",
+        "Собрать интерфейс упражнения",
+        "Проверить эталонные сценарии и повтор попытки"
+      ],
+      "durationDays": 10,
+      "assumptions": "Используем только подтверждённые куратором правила учебного набора.",
+      "prototypeUrl": "/demo/prototypes/proposal-005",
+      "prototypeKind": "internal_demo_placeholder",
+      "status": "pending",
+      "isSynthetic": true
+    }
+  ]
+}

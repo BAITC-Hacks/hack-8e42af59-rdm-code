@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url = env("DATABASE_URL")
+}
+model Business {
+  id String @id
+  name String
+  industry String
+  contact String
+  isDemo Boolean @default(true)
+  tasks Task[]
+  drafts Draft[]
+}
+model Draft {
+  id String @id
+  businessId String
+  business Business @relation(fields: [businessId], references: [id])
+  text String
+  industry String
+  createdAt DateTime @default(now())
+  tasks Task[]
+}
+model Task {
+  id String @id @default(cuid())
+  ownerId String
+  owner Business @relation(fields: [ownerId], references: [id])
+  draftId String?
+  draft Draft? @relation(fields: [draftId], references: [id])
+  title String
+  topic String
+  fields String
+  confirmedFields String @default("[]")
+  learning String
+  readinessScore Int @default(0)
+  publicationStatus String @default("unpublished")
+  isDemo Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  proposals Proposal[]
+}
+model Team {
+  id String @id
+  name String
+  interests String
+  skills String
+  technologies String
+  memberCount Int
+  bio String
+  practicePoints Int @default(0)
+  isDemo Boolean @default(true)
+  proposals Proposal[]
+  awards Award[]
+}
+model Proposal {
+  id String @id @default(cuid())
+  taskId String
+  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  teamId String
+  team Team @relation(fields: [teamId], references: [id])
+  idea String
+  plan String
+  durationDays Int
+  prototypeUrl String
+  assumptions String @default("")
+  status String @default("pending")
+  isDemo Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  milestone Milestone?
+}
+model Milestone {
+  id String @id @default(cuid())
+  proposalId String @unique
+  proposal Proposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  title String @default("Первый прототип")
+  result String @default("")
+  resultUrl String @default("")
+  status String @default("open")
+  confirmedAt DateTime?
+  award Award?
+}
+model Award {
+  id String @id @default(cuid())
+  milestoneId String @unique
+  milestone Milestone @relation(fields: [milestoneId], references: [id], onDelete: Cascade)
+  teamId String
+  team Team @relation(fields: [teamId], references: [id])
+  points Int @default(50)
+  createdAt DateTime @default(now())
+}

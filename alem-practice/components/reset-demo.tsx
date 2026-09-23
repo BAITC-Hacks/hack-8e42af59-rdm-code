@@ -1,0 +1,7 @@
+'use client';
+import {useState} from 'react';
+import {RotateCcw} from 'lucide-react';
+import {useApp} from './provider';
+import {Button} from './ui/button';
+import {Dialog} from './ui/dialog';
+export function ResetDemo(){const {role,run,notify,setRole}=useApp();const [open,setOpen]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState('');return <div className="panel guide-callout"><h2>Подготовка к повторной демонстрации</h2><p>Верните пять исходных карточек и откликов к началу сценария. Созданные вами задачи и предложения сохранятся.</p>{role!=='business'?<Button variant="outline" onClick={()=>setRole('business')}>Переключиться на бизнес</Button>:<Button variant="outline" onClick={()=>setOpen(true)}><RotateCcw size={15}/>Сбросить учебные примеры</Button>}<Dialog open={open} onOpenChange={setOpen} title="Вернуть исходные примеры?" description="Изменения пяти исходных карточек, решения по пяти исходным откликам и баллы за их этапы будут сброшены. Ваши новые задачи, отклики и их результаты останутся.">{error&&<div className="error-box">{error}</div>}<div className="form-actions"><Button variant="ghost" onClick={()=>setOpen(false)}>Отмена</Button><Button disabled={busy} onClick={async()=>{setBusy(true);setError('');try{await run('resetDemo',{confirm:'RESET_DEMO'});setOpen(false);notify('Исходные учебные примеры восстановлены')}catch(e){setError(e instanceof Error?e.message:'Ошибка сброса')}finally{setBusy(false)}}}>Восстановить примеры</Button></div></Dialog></div>}
