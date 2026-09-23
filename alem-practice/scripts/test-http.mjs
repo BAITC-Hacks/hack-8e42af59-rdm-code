@@ -13,7 +13,7 @@ const probe=createServer();probe.listen(port,'127.0.0.1');await once(probe,'list
 const sqlite=new DatabaseSync(file);
 for(const name of readdirSync('prisma/migrations').filter(n=>n!=='migration_lock.toml').sort())sqlite.exec(readFileSync(`prisma/migrations/${name}/migration.sql`,'utf8'));
 sqlite.close();
-const env={...process.env,DATABASE_URL:`file:${file.replaceAll('\\','/')}`,APP_URL:origin,AUTH_MODE:'mock',ALLOW_MOCK_AUTH:'true',AI_MODE:'mock',OPENAI_API_KEY:'',AI_API_KEY:''};
+const env={...process.env,DATABASE_URL:`file:${file.replaceAll('\\','/')}`,APP_URL:origin,APP_ORIGINS:'',TEST_HTTP_SANDBOX:'true',AI_MODE:'mock',OPENAI_API_KEY:'',AI_API_KEY:''};
 let server;
 async function start(){
  server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port',String(port)],{env,stdio:'ignore',windowsHide:true});

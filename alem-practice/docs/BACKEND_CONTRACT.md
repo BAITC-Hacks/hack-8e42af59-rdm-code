@@ -7,14 +7,14 @@ No UI, CSS, page or layout changes are part of this backend update.
 ## Transport and identity
 
 - Same-origin JSON HTTP API. Local origin: `http://127.0.0.1:3000`, configured by `APP_URL`.
-- All mutations require `Origin` exactly equal to `APP_URL` origin and a valid `alem_session` cookie.
+- All mutations require an allowed exact `Origin` (`APP_URL` or `APP_ORIGINS`). Protected actions additionally require a valid `alem_session` cookie; register/login are public.
 - The existing auth routes issue HttpOnly/SameSite cookies. Role and actor ID come from the session.
   `x-demo-role`, `x-demo-id`, client scores and client ownership are not trusted.
 - Error shape is always `{ "error": "human-readable message" }`. Statuses: 400 invalid input,
   401 no session, 403 wrong role/owner/origin, 404 missing record, 413 oversized body, 429 local quota,
   500 unexpected failure. Provider payloads and credentials are never returned.
 - Body limit: 65,536 characters (and declared Content-Length limit). JSON uses ISO dates, string IDs and explicit nulls.
-- Auth mock is for a local demonstration, not verification of phone ownership. Existing Twilio support is unchanged.
+- Authentication uses username/password; phone/SMS routes are removed. `POST /api/auth/register` accepts `{name,role,username,password,confirmPassword}`; `/api/auth/login` accepts `{username,password}`. Both issue a session cookie and return `{user: OwnProfile}`. Usernames are normalized lowercase; passwords contain 12–128 characters on registration. `/api/auth/logout` revokes the current session; `/api/auth/logout-all` revokes all sessions of the signed-in account. `/api/auth/credentials` lets an authenticated legacy account set credentials once. `OwnProfile` includes `username: string | null`; no phone or password hash is returned.
 
 ## GET /api/data
 
@@ -24,7 +24,7 @@ Returns an object (no new envelope):
 {
   tasks: TaskView[], businesses: BusinessView[], teams: TeamView[],
   proposals: ProposalView[], profiles: PublicProfile[], me: OwnProfile | null,
-  authMode: 'mock' | 'twilio', aiMode: 'mock' | 'live',
+  aiMode: 'mock' | 'live',
   aiConfiguration: { configured: boolean, provider: 'openai' | 'compatible', model: string | null }
 }
 ```

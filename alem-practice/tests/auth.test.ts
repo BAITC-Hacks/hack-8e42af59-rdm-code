@@ -1,52 +1,84 @@
 import {test,after} from 'node:test';
 import assert from 'node:assert/strict';
+import {createHash,randomUUID} from 'node:crypto';
 import {db} from '../lib/db';
-import {requestCode,verifyCode,sessionUser,revokeSession,checkOrigin,checkAuthConfiguration,normalizePhone,consumeRate} from '../lib/auth';
+import {register,login,setCredentials,sessionUser,revokeSession,revokeAllSessions,checkOrigin,consumeRate,hashPassword,checkPassword} from '../lib/auth';
 import {getData} from '../lib/data';
 import {saveProfile} from '../lib/profile';
 import {act} from '../lib/actions';
 import {emptyFields} from '../lib/domain';
 
 after(()=>db.$disconnect());
-test('phone normalization, explicit local mock opt-in, and exact origin enforcement',()=>{
- assert.equal(normalizePhone('+7 (701) 123-45-67'),'+77011234567');
- assert.throws(()=>normalizePhone('77011234567'));
- assert.throws(()=>checkOrigin(new Request('http://127.0.0.1:3000/api/action',{headers:{origin:'https://evil.example'}})));
- assert.throws(()=>checkOrigin(new Request('http://127.0.0.1:3000/api/action')));
- checkOrigin(new Request('http://127.0.0.1:3000/api/action',{headers:{origin:'http://127.0.0.1:3000'}}));
- process.env.APP_URL='https://practice.example.org';assert.throws(checkAuthConfiguration);process.env.APP_URL='http://127.0.0.1:3000';
- process.env.ALLOW_MOCK_AUTH='false';assert.throws(checkAuthConfiguration);process.env.ALLOW_MOCK_AUTH='true';
+const password='A test phrase with spaces 42!';
+const registration=(username:string,role='student')=>({name:'Test learner',role,username,password,confirmPassword:password});
+test('origin checks allow only explicitly configured LAN addresses',()=>{
+ const request=(origin?:string)=>new Request('http://127.0.0.1:3000/api/auth/login',{headers:origin?{origin}:{}});
+ checkOrigin(request('http://127.0.0.1:3000'));
+ assert.throws(()=>checkOrigin(request()));
+ assert.throws(()=>checkOrigin(request('https://evil.example')));
+ assert.throws(()=>checkOrigin(request('http://192.168.1.77:3000')));
+ process.env.APP_ORIGINS='http://192.168.1.77:3000';
+ checkOrigin(request('http://192.168.1.77:3000'));
+ assert.throws(()=>checkOrigin(request('http://192.168.1.77:4000')));
+ process.env.APP_ORIGINS='';
+ process.env.APP_URL='http://127.0.0.1:3002';
+ checkOrigin(request('http://localhost:3002'));assert.throws(()=>checkOrigin(request('http://localhost:3000')));
+ process.env.APP_URL='http://127.0.0.1:3000';
 });
-test('one-time code, persistent session, profile privacy and logout',async()=>{
- const c=await requestCode('+15555550101');assert.match(c.testCode!,/^\d{6}$/);
- await assert.rejects(()=>verifyCode({challengeId:c.challengeId,code:'000000',registration:{name:'Тестовый студент',role:'student'}}));
- const session=await verifyCode({challengeId:c.challengeId,code:c.testCode!,registration:{name:'Тестовый студент',role:'student'}});
- const user=await sessionUser(session.token);assert(user);assert.equal(user.name,'Тестовый студент');
- assert(!JSON.stringify(session.user).includes('+15555550101'));
- await assert.rejects(()=>verifyCode({challengeId:c.challengeId,code:c.testCode!}));
+test('passwords are salted, verified, and never stored as plaintext',async()=>{
+ const first=await hashPassword(password),second=await hashPassword(password);
+ assert.notEqual(first,second);assert(!first.includes(password));
+ assert(await checkPassword(password,first));assert(!(await checkPassword('wrong password',first)));
+ assert(!(await checkPassword(password,'broken hash')));
+});
+test('registration validates credentials and rejects duplicate normalized usernames atomically',async()=>{
+ for(const invalid of [{username:'a'},{username:'bad login'},{password:'short',confirmPassword:'short'},{confirmPassword:'different'},{phone:'+15555550101'}])await assert.rejects(()=>register({...registration('validation'),...invalid}));
+ const first=await register(registration(' Mixed_Name '));assert.equal(first.user.username,'mixed_name');
+ const user=await sessionUser(first.token);assert(user);assert.equal(user.phone,null);assert(user.passwordHash);
+ assert(!('passwordHash' in first.user));assert(!('phone' in first.user));
+ const teamCount=await db.team.count();
+ await assert.rejects(()=>register(registration('MIXED_NAME')),{status:409});
+ assert.equal(await db.team.count(),teamCount);
+ const wrong=await login({username:'mixed_name',password:'incorrect'}).catch(e=>e);
+ const missing=await login({username:'unknown_account',password:'incorrect'}).catch(e=>e);
+ assert.equal(wrong.status,401);assert.equal(missing.status,401);assert.equal(wrong.message,missing.message);
+});
+test('two devices share a saved profile while sessions can be revoked independently',async()=>{
+ const first=await register(registration('two_devices'));
+ const owner=await sessionUser(first.token);assert(owner);
+ const publicBefore=await getData();assert(!publicBefore.profiles.some(p=>p.id===owner.id));assert(!publicBefore.teams.some(t=>t.id===owner.actorId));
+ const profile={name:'Updated name',bio:'Learning through practice',location:'Алматы',education:'University',skills:['React'],website:'https://example.org',publicProfile:true,teamName:'Test Makers',memberCount:2};
+ await saveProfile(owner,profile);
+ const second=await login({username:'TWO_DEVICES',password});assert.notEqual(first.token,second.token);
+ assert.equal(second.user.id,owner.id);assert.equal(second.user.name,profile.name);
+ assert.equal(await db.user.count({where:{username:'two_devices'}}),1);
+ const publicData=await getData();assert(publicData.profiles.some(p=>p.name===profile.name));
+ assert(!JSON.stringify(publicData).includes('passwordHash'));assert(!JSON.stringify(publicData).includes(password));
+ await assert.rejects(()=>saveProfile(owner,{...profile,website:'javascript:alert(1)'}));
+ await saveProfile(owner,{...profile,publicProfile:false});assert(!(await getData()).profiles.some(p=>p.id===owner.id));
+ await revokeSession(first.token);assert.equal(await sessionUser(first.token),null);assert(await sessionUser(second.token));
+ await revokeAllSessions(owner.id);assert.equal(await sessionUser(second.token),null);
  assert.equal(await sessionUser('forged-token'),null);
- let publicData=await getData();assert(!publicData.profiles.some(p=>p.id===user.id));assert(!publicData.teams.some(t=>t.id===user.actorId));
- const profile={name:'Новая версия имени',bio:'Изучаю проекты',location:'Алматы',education:'Университет',skills:['React'],website:'https://example.org',publicProfile:true,teamName:'Test Makers',memberCount:2};
- await saveProfile(user,profile);publicData=await getData();assert(publicData.profiles.some(p=>p.name===profile.name));assert(!JSON.stringify(publicData).includes(user.phone));
- await assert.rejects(()=>saveProfile(user,{...profile,website:'javascript:alert(1)'}));
- await saveProfile(user,{...profile,publicProfile:false});assert(!(await getData()).profiles.some(p=>p.id===user.id));
- process.env.AUTH_MODE='twilio';assert.equal(await sessionUser(session.token),null);process.env.AUTH_MODE='mock';
- await revokeSession(session.token);assert.equal(await sessionUser(session.token),null);
 });
-test('expired codes, five-attempt lockout, resend and persistent quota',async()=>{
- const c=await requestCode('+15555550102');
- await assert.rejects(()=>requestCode('+15555550102'));
- for(let i=0;i<5;i++)await assert.rejects(()=>verifyCode({challengeId:c.challengeId,code:'000000'}));
- await assert.rejects(()=>verifyCode({challengeId:c.challengeId,code:c.testCode!,registration:{name:'Locked',role:'student'}}));
- const expired=await requestCode('+15555550103');await db.authChallenge.update({where:{id:expired.challengeId},data:{expiresAt:new Date(0)}});
- await assert.rejects(()=>verifyCode({challengeId:expired.challengeId,code:expired.testCode!}));
- await consumeRate('unit-quota',1,3600);await assert.rejects(()=>consumeRate('unit-quota',1,3600));
+test('expired sessions cannot authenticate and quotas persist in the database',async()=>{
+ const session=await register(registration('expired_session'));
+ await db.session.updateMany({where:{userId:session.user.id},data:{expiresAt:new Date(0)}});
+ assert.equal(await sessionUser(session.token),null);
+ await consumeRate('unit-quota',1,3600);await assert.rejects(()=>consumeRate('unit-quota',1,3600),{status:429});
 });
-test('real account ownership: private drafts and proposals are never public',async()=>{
- const c=await requestCode('+15555550104');const session=await verifyCode({challengeId:c.challengeId,code:c.testCode!,registration:{name:'Тестовый бизнес',role:'business'}});
- const owner=await sessionUser(session.token);assert(owner);
- const c2=await requestCode('+15555550105');const session2=await verifyCode({challengeId:c2.challengeId,code:c2.testCode!,registration:{name:'Тестовая команда',role:'student'}});
- const student=await sessionUser(session2.token);assert(student);
+test('legacy owners set credentials without losing work, revoking older sessions',async()=>{
+ const actorId=randomUUID();await db.team.create({data:{id:actorId,name:'Legacy team',interests:'[]',skills:'[]',technologies:'[]',memberCount:1,bio:'',isDemo:false}});
+ const legacy=await db.user.create({data:{phone:'+15555550999',provider:'mock',role:'student',name:'Legacy owner',bio:'Preserved biography',actorId}});
+ const oldToken=randomUUID();await db.session.create({data:{tokenHash:createHash('sha256').update(oldToken).digest('hex'),userId:legacy.id,expiresAt:new Date(Date.now()+60000)}});
+ const updated=await setCredentials(legacy,{username:'legacy_owner',password,confirmPassword:password});
+ assert.equal(updated.user.id,legacy.id);assert.equal(updated.user.actorId,actorId);assert.equal(updated.user.bio,legacy.bio);
+ assert.equal(await sessionUser(oldToken),null);assert(await sessionUser(updated.token));
+ assert.equal((await login({username:'legacy_owner',password})).user.id,legacy.id);
+ await assert.rejects(()=>setCredentials(legacy,{username:'hijack_owner',password,confirmPassword:password}),{status:409});
+});
+test('account ownership keeps drafts and proposals private',async()=>{
+ const business=await register(registration('test_business','business')),team=await register(registration('test_student'));
+ const owner=await sessionUser(business.token),student=await sessionUser(team.token);assert(owner&&student);
  const actor={role:owner.role,id:owner.actorId};
  const task=await act('createTask',{title:'Private auth test task',topic:'Образование',fields:{...emptyFields(),need:'Создать тестовую форму'},learning:{skills:[],prerequisites:[],portfolio:'Проект',difficulty:'Начальная'}},actor);assert('id'in task);
  assert(!(await getData()).tasks.some(t=>t.id===task.id));assert((await getData(owner)).tasks.some(t=>t.id===task.id));
@@ -55,15 +87,4 @@ test('real account ownership: private drafts and proposals are never public',asy
  const proposal=await act('createProposal',{taskId:task.id,idea:'Конфиденциальная идея команды',plan:['Проверить форму'],durationDays:7,prototypeUrl:'https://example.org'},{role:student.role,id:student.actorId});assert('id'in proposal);
  assert(!(await getData()).proposals.some(p=>p.id===proposal.id));assert((await getData(owner)).proposals.some(p=>p.id===proposal.id));assert((await getData(student)).proposals.some(p=>p.id===proposal.id));
  await assert.rejects(()=>act('resetDemo',{confirm:'RESET_DEMO'},actor));
-});
-test('Twilio adapter checks provider approval without exposing a test code',async()=>{
- const originalFetch=globalThis.fetch;
- process.env.AUTH_MODE='twilio';process.env.TWILIO_ACCOUNT_SID='AC_test';process.env.TWILIO_AUTH_TOKEN='test-token';process.env.TWILIO_VERIFY_SERVICE_SID='VA_test';
- const requests:{url:string;body:string}[]=[];
- globalThis.fetch=(async (url,init)=>{requests.push({url:String(url),body:String(init?.body)});return Response.json({status:String(url).endsWith('VerificationCheck')?'approved':'pending'});}) as typeof fetch;
- try{
-  const c=await requestCode('+15555550106');assert.equal(c.testCode,undefined);
-  const session=await verifyCode({challengeId:c.challengeId,code:'123456',registration:{name:'Provider test',role:'student'}});
-  assert.equal(session.user.isTest,false);assert.equal(requests.length,2);assert(requests[0].url.endsWith('/Verifications'));assert(requests[1].body.includes('Code=123456'));
- }finally{globalThis.fetch=originalFetch;process.env.AUTH_MODE='mock';delete process.env.TWILIO_ACCOUNT_SID;delete process.env.TWILIO_AUTH_TOKEN;delete process.env.TWILIO_VERIFY_SERVICE_SID;}
 });

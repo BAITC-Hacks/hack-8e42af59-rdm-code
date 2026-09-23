@@ -11,6 +11,6 @@ export async function readBody(request:Request) {
 }
 export function apiError(e:unknown) {
   const status=e instanceof ActionError?e.status:e instanceof z.ZodError?400:500;
-  // Never log provider payloads, phone numbers, codes, or Prisma input data.
+  // Never log credentials, tokens, or Prisma input data.
   return Response.json({error:e instanceof ActionError?e.message:e instanceof z.ZodError?'Проверьте обязательные поля и формат данных.':'Не удалось выполнить запрос. Попробуйте ещё раз.'},{status,headers:{'Cache-Control':'no-store'}});
 }

@@ -1,16 +1,18 @@
 import assert from 'node:assert/strict';
-// Run only against a local mock server. Creates two clearly named test accounts and one test task.
-const origin=process.env.SMOKE_URL||'http://127.0.0.1:3000';
+import {randomBytes} from 'node:crypto';
+// Invoked by test-http.mjs against its own temporary database only.
+assert.equal(process.env.TEST_HTTP_SANDBOX,'true','Use npm run test:http; do not run against the working database.');
+const origin=process.env.SMOKE_URL;
 assert(['127.0.0.1','localhost'].includes(new URL(origin).hostname));
 async function call(path,body,cookie='',method='POST',extra={}){
  const response=await fetch(origin+path,{method,headers:{Origin:origin,'Content-Type':'application/json',...(cookie?{Cookie:cookie}:{}),...extra},...(body===undefined?{}:{body:JSON.stringify(body)})});
  return {status:response.status,body:await response.json(),cookie:response.headers.get('set-cookie')};
 }
-const guest=await call('/api/data',undefined,'','GET');assert.equal(guest.body.authMode,'mock','This script must not send real SMS');assert.equal(guest.body.me,null);
+const guest=await call('/api/data',undefined,'','GET');assert.equal(guest.body.me,null);
 const forged=await call('/api/action',{action:'resetDemo',payload:{confirm:'RESET_DEMO'}},'','POST',{'x-demo-role':'business','x-demo-id':'biz-001'});assert.equal(forged.status,401);
-const csrf=await call('/api/auth/request',{phone:'+15555550199'},'','POST',{Origin:'https://evil.example'});assert.equal(csrf.status,403);
+const csrf=await call('/api/auth/login',{username:'student',password:'invalid'},'','POST',{Origin:'https://evil.example'});assert.equal(csrf.status,403);
 const suffix=String(Date.now()).slice(-6);
-async function register(role,index){const sent=await call('/api/auth/request',{phone:`+1555${suffix}${index}`});assert.equal(sent.status,200);assert(sent.body.testCode);const result=await call('/api/auth/verify',{challengeId:sent.body.challengeId,code:sent.body.testCode,registration:{name:`HTTP test ${role}`,role}});assert.equal(result.status,200);assert.match(result.cookie,/HttpOnly/i);assert.match(result.cookie,/SameSite=lax/i);return result.cookie.split(';')[0];}
+async function register(role,index){const password=randomBytes(24).toString('base64url');const result=await call('/api/auth/register',{username:`http_${suffix}_${index}`,password,confirmPassword:password,name:`HTTP test ${role}`,role});assert.equal(result.status,200);assert.match(result.cookie,/HttpOnly/i);assert.match(result.cookie,/SameSite=lax/i);return result.cookie.split(';')[0];}
 const business=await register('business',1),student=await register('student',2);
 const aiInput={mode:'questions',draft:{id:'draft',text:'Учебное кафе хочет уменьшить списания продуктов.',industry:'Кафе'},answers:[],forceMock:true};
 assert.equal((await call('/api/ai',aiInput)).status,401);
