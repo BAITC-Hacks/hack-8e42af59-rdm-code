@@ -1,23 +1,13 @@
 import {z} from 'zod';
 import {db} from './db';
 import {taskSchema,proposalSchema,fieldKeys,calculateScore,validField,retainConfirmations,safeUrl,type Fields} from './domain';
-import seed from '../data/seed.json';
+
 export class ActionError extends Error {constructor(message:string,public status=400){super(message)}}
 export type Actor={role:string;id:string};
 export async function act(action:string,payload:unknown,actor:Actor){
  const business=async()=>{if(actor.role!=='business'||!await db.business.findUnique({where:{id:actor.id}}))throw new ActionError('Выберите профиль бизнеса',403);};
  const team=async()=>{if(actor.role!=='student'||!await db.team.findUnique({where:{id:actor.id}}))throw new ActionError('Выберите профиль команды',403);};
  const ownTask=async(id:string)=>{await business();const t=await db.task.findUnique({where:{id}});if(!t)throw new ActionError('Задача не найдена',404);if(t.ownerId!==actor.id)throw new ActionError('Это задача другой организации',403);return t;};
- if(action==='resetDemo'){
-  await business();z.object({confirm:z.literal('RESET_DEMO')}).strict().parse(payload);
-  return db.$transaction(async tx=>{
-   for(const t of seed.tasks){const fields=Object.fromEntries(fieldKeys.map(k=>[k,t[k]])) as Fields;await tx.task.update({where:{id:t.id},data:{title:t.title,topic:t.topic,fields:JSON.stringify(fields),learning:JSON.stringify(t.learning),confirmedFields:JSON.stringify(t.confirmedFields),readinessScore:calculateScore(fields,t.confirmedFields),publicationStatus:t.publicationStatus}});}
-   await tx.milestone.deleteMany({where:{proposalId:{in:seed.proposals.map(p=>p.id)}}});
-   for(const p of seed.proposals)await tx.proposal.update({where:{id:p.id},data:{status:p.status}});
-   for(const t of seed.teams){const awards=await tx.award.aggregate({where:{teamId:t.id},_sum:{points:true}});await tx.team.update({where:{id:t.id},data:{practicePoints:awards._sum.points||0}});}
-   return {reset:true};
-  });
- }
  if(action==='createTask'){
   await business();const p=taskSchema.parse(payload);
   return db.$transaction(async tx=>{const draft=await tx.draft.create({data:{id:crypto.randomUUID(),businessId:actor.id,text:p.draftText||p.fields.context||p.title,industry:p.topic}});return tx.task.create({data:{ownerId:actor.id,draftId:draft.id,title:p.title,topic:p.topic,fields:JSON.stringify(p.fields),learning:JSON.stringify(p.learning)}})});

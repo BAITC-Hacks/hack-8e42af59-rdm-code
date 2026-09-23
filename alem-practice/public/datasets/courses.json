@@ -1,0 +1,954 @@
+{
+  "isSynthetic": true,
+  "description": "Учебные курсы и обезличенные вымышленные события прохождения. Все идентификаторы синтетические.",
+  "courses": [
+    {
+      "id": "course-1",
+      "title": "Python с нуля",
+      "topics": [
+        "Введение",
+        "Основы",
+        "Практика",
+        "Самостоятельная работа",
+        "Проект"
+      ],
+      "estimatedHours": 12,
+      "students": [
+        {
+          "id": "synthetic-student-1",
+          "completedModules": 0,
+          "daysSinceLastVisit": 0,
+          "quizScore": 40
+        },
+        {
+          "id": "synthetic-student-2",
+          "completedModules": 1,
+          "daysSinceLastVisit": 3,
+          "quizScore": 47
+        },
+        {
+          "id": "synthetic-student-3",
+          "completedModules": 2,
+          "daysSinceLastVisit": 6,
+          "quizScore": 54
+        },
+        {
+          "id": "synthetic-student-4",
+          "completedModules": 3,
+          "daysSinceLastVisit": 9,
+          "quizScore": 61
+        },
+        {
+          "id": "synthetic-student-5",
+          "completedModules": 4,
+          "daysSinceLastVisit": 12,
+          "quizScore": 68
+        },
+        {
+          "id": "synthetic-student-6",
+          "completedModules": 5,
+          "daysSinceLastVisit": 15,
+          "quizScore": 75
+        },
+        {
+          "id": "synthetic-student-7",
+          "completedModules": 0,
+          "daysSinceLastVisit": 18,
+          "quizScore": 82
+        },
+        {
+          "id": "synthetic-student-8",
+          "completedModules": 1,
+          "daysSinceLastVisit": 21,
+          "quizScore": 89
+        },
+        {
+          "id": "synthetic-student-9",
+          "completedModules": 2,
+          "daysSinceLastVisit": 24,
+          "quizScore": 96
+        },
+        {
+          "id": "synthetic-student-10",
+          "completedModules": 3,
+          "daysSinceLastVisit": 2,
+          "quizScore": 42
+        },
+        {
+          "id": "synthetic-student-11",
+          "completedModules": 4,
+          "daysSinceLastVisit": 5,
+          "quizScore": 49
+        },
+        {
+          "id": "synthetic-student-12",
+          "completedModules": 5,
+          "daysSinceLastVisit": 8,
+          "quizScore": 56
+        },
+        {
+          "id": "synthetic-student-13",
+          "completedModules": 0,
+          "daysSinceLastVisit": 11,
+          "quizScore": 63
+        },
+        {
+          "id": "synthetic-student-14",
+          "completedModules": 1,
+          "daysSinceLastVisit": 14,
+          "quizScore": 70
+        },
+        {
+          "id": "synthetic-student-15",
+          "completedModules": 2,
+          "daysSinceLastVisit": 17,
+          "quizScore": 77
+        },
+        {
+          "id": "synthetic-student-16",
+          "completedModules": 3,
+          "daysSinceLastVisit": 20,
+          "quizScore": 84
+        },
+        {
+          "id": "synthetic-student-17",
+          "completedModules": 4,
+          "daysSinceLastVisit": 23,
+          "quizScore": 91
+        },
+        {
+          "id": "synthetic-student-18",
+          "completedModules": 5,
+          "daysSinceLastVisit": 1,
+          "quizScore": 98
+        },
+        {
+          "id": "synthetic-student-19",
+          "completedModules": 0,
+          "daysSinceLastVisit": 4,
+          "quizScore": 44
+        },
+        {
+          "id": "synthetic-student-20",
+          "completedModules": 1,
+          "daysSinceLastVisit": 7,
+          "quizScore": 51
+        },
+        {
+          "id": "synthetic-student-21",
+          "completedModules": 2,
+          "daysSinceLastVisit": 10,
+          "quizScore": 58
+        },
+        {
+          "id": "synthetic-student-22",
+          "completedModules": 3,
+          "daysSinceLastVisit": 13,
+          "quizScore": 65
+        },
+        {
+          "id": "synthetic-student-23",
+          "completedModules": 4,
+          "daysSinceLastVisit": 16,
+          "quizScore": 72
+        },
+        {
+          "id": "synthetic-student-24",
+          "completedModules": 5,
+          "daysSinceLastVisit": 19,
+          "quizScore": 79
+        }
+      ]
+    },
+    {
+      "id": "course-2",
+      "title": "Основы SQL",
+      "topics": [
+        "Введение",
+        "Основы",
+        "Практика",
+        "Самостоятельная работа",
+        "Проект"
+      ],
+      "estimatedHours": 15,
+      "students": [
+        {
+          "id": "synthetic-student-1",
+          "completedModules": 1,
+          "daysSinceLastVisit": 1,
+          "quizScore": 49
+        },
+        {
+          "id": "synthetic-student-2",
+          "completedModules": 2,
+          "daysSinceLastVisit": 4,
+          "quizScore": 56
+        },
+        {
+          "id": "synthetic-student-3",
+          "completedModules": 3,
+          "daysSinceLastVisit": 7,
+          "quizScore": 63
+        },
+        {
+          "id": "synthetic-student-4",
+          "completedModules": 4,
+          "daysSinceLastVisit": 10,
+          "quizScore": 70
+        },
+        {
+          "id": "synthetic-student-5",
+          "completedModules": 5,
+          "daysSinceLastVisit": 13,
+          "quizScore": 77
+        },
+        {
+          "id": "synthetic-student-6",
+          "completedModules": 0,
+          "daysSinceLastVisit": 16,
+          "quizScore": 84
+        },
+        {
+          "id": "synthetic-student-7",
+          "completedModules": 1,
+          "daysSinceLastVisit": 19,
+          "quizScore": 91
+        },
+        {
+          "id": "synthetic-student-8",
+          "completedModules": 2,
+          "daysSinceLastVisit": 22,
+          "quizScore": 98
+        },
+        {
+          "id": "synthetic-student-9",
+          "completedModules": 3,
+          "daysSinceLastVisit": 0,
+          "quizScore": 44
+        },
+        {
+          "id": "synthetic-student-10",
+          "completedModules": 4,
+          "daysSinceLastVisit": 3,
+          "quizScore": 51
+        },
+        {
+          "id": "synthetic-student-11",
+          "completedModules": 5,
+          "daysSinceLastVisit": 6,
+          "quizScore": 58
+        },
+        {
+          "id": "synthetic-student-12",
+          "completedModules": 0,
+          "daysSinceLastVisit": 9,
+          "quizScore": 65
+        },
+        {
+          "id": "synthetic-student-13",
+          "completedModules": 1,
+          "daysSinceLastVisit": 12,
+          "quizScore": 72
+        },
+        {
+          "id": "synthetic-student-14",
+          "completedModules": 2,
+          "daysSinceLastVisit": 15,
+          "quizScore": 79
+        },
+        {
+          "id": "synthetic-student-15",
+          "completedModules": 3,
+          "daysSinceLastVisit": 18,
+          "quizScore": 86
+        },
+        {
+          "id": "synthetic-student-16",
+          "completedModules": 4,
+          "daysSinceLastVisit": 21,
+          "quizScore": 93
+        },
+        {
+          "id": "synthetic-student-17",
+          "completedModules": 5,
+          "daysSinceLastVisit": 24,
+          "quizScore": 100
+        },
+        {
+          "id": "synthetic-student-18",
+          "completedModules": 0,
+          "daysSinceLastVisit": 2,
+          "quizScore": 46
+        },
+        {
+          "id": "synthetic-student-19",
+          "completedModules": 1,
+          "daysSinceLastVisit": 5,
+          "quizScore": 53
+        },
+        {
+          "id": "synthetic-student-20",
+          "completedModules": 2,
+          "daysSinceLastVisit": 8,
+          "quizScore": 60
+        },
+        {
+          "id": "synthetic-student-21",
+          "completedModules": 3,
+          "daysSinceLastVisit": 11,
+          "quizScore": 67
+        },
+        {
+          "id": "synthetic-student-22",
+          "completedModules": 4,
+          "daysSinceLastVisit": 14,
+          "quizScore": 74
+        },
+        {
+          "id": "synthetic-student-23",
+          "completedModules": 5,
+          "daysSinceLastVisit": 17,
+          "quizScore": 81
+        },
+        {
+          "id": "synthetic-student-24",
+          "completedModules": 0,
+          "daysSinceLastVisit": 20,
+          "quizScore": 88
+        }
+      ]
+    },
+    {
+      "id": "course-3",
+      "title": "Веб-интерфейсы",
+      "topics": [
+        "Введение",
+        "Основы",
+        "Практика",
+        "Самостоятельная работа",
+        "Проект"
+      ],
+      "estimatedHours": 18,
+      "students": [
+        {
+          "id": "synthetic-student-1",
+          "completedModules": 2,
+          "daysSinceLastVisit": 2,
+          "quizScore": 58
+        },
+        {
+          "id": "synthetic-student-2",
+          "completedModules": 3,
+          "daysSinceLastVisit": 5,
+          "quizScore": 65
+        },
+        {
+          "id": "synthetic-student-3",
+          "completedModules": 4,
+          "daysSinceLastVisit": 8,
+          "quizScore": 72
+        },
+        {
+          "id": "synthetic-student-4",
+          "completedModules": 5,
+          "daysSinceLastVisit": 11,
+          "quizScore": 79
+        },
+        {
+          "id": "synthetic-student-5",
+          "completedModules": 0,
+          "daysSinceLastVisit": 14,
+          "quizScore": 86
+        },
+        {
+          "id": "synthetic-student-6",
+          "completedModules": 1,
+          "daysSinceLastVisit": 17,
+          "quizScore": 93
+        },
+        {
+          "id": "synthetic-student-7",
+          "completedModules": 2,
+          "daysSinceLastVisit": 20,
+          "quizScore": 100
+        },
+        {
+          "id": "synthetic-student-8",
+          "completedModules": 3,
+          "daysSinceLastVisit": 23,
+          "quizScore": 46
+        },
+        {
+          "id": "synthetic-student-9",
+          "completedModules": 4,
+          "daysSinceLastVisit": 1,
+          "quizScore": 53
+        },
+        {
+          "id": "synthetic-student-10",
+          "completedModules": 5,
+          "daysSinceLastVisit": 4,
+          "quizScore": 60
+        },
+        {
+          "id": "synthetic-student-11",
+          "completedModules": 0,
+          "daysSinceLastVisit": 7,
+          "quizScore": 67
+        },
+        {
+          "id": "synthetic-student-12",
+          "completedModules": 1,
+          "daysSinceLastVisit": 10,
+          "quizScore": 74
+        },
+        {
+          "id": "synthetic-student-13",
+          "completedModules": 2,
+          "daysSinceLastVisit": 13,
+          "quizScore": 81
+        },
+        {
+          "id": "synthetic-student-14",
+          "completedModules": 3,
+          "daysSinceLastVisit": 16,
+          "quizScore": 88
+        },
+        {
+          "id": "synthetic-student-15",
+          "completedModules": 4,
+          "daysSinceLastVisit": 19,
+          "quizScore": 95
+        },
+        {
+          "id": "synthetic-student-16",
+          "completedModules": 5,
+          "daysSinceLastVisit": 22,
+          "quizScore": 41
+        },
+        {
+          "id": "synthetic-student-17",
+          "completedModules": 0,
+          "daysSinceLastVisit": 0,
+          "quizScore": 48
+        },
+        {
+          "id": "synthetic-student-18",
+          "completedModules": 1,
+          "daysSinceLastVisit": 3,
+          "quizScore": 55
+        },
+        {
+          "id": "synthetic-student-19",
+          "completedModules": 2,
+          "daysSinceLastVisit": 6,
+          "quizScore": 62
+        },
+        {
+          "id": "synthetic-student-20",
+          "completedModules": 3,
+          "daysSinceLastVisit": 9,
+          "quizScore": 69
+        },
+        {
+          "id": "synthetic-student-21",
+          "completedModules": 4,
+          "daysSinceLastVisit": 12,
+          "quizScore": 76
+        },
+        {
+          "id": "synthetic-student-22",
+          "completedModules": 5,
+          "daysSinceLastVisit": 15,
+          "quizScore": 83
+        },
+        {
+          "id": "synthetic-student-23",
+          "completedModules": 0,
+          "daysSinceLastVisit": 18,
+          "quizScore": 90
+        },
+        {
+          "id": "synthetic-student-24",
+          "completedModules": 1,
+          "daysSinceLastVisit": 21,
+          "quizScore": 97
+        }
+      ]
+    },
+    {
+      "id": "course-4",
+      "title": "Аналитика данных",
+      "topics": [
+        "Введение",
+        "Основы",
+        "Практика",
+        "Самостоятельная работа",
+        "Проект"
+      ],
+      "estimatedHours": 21,
+      "students": [
+        {
+          "id": "synthetic-student-1",
+          "completedModules": 3,
+          "daysSinceLastVisit": 3,
+          "quizScore": 67
+        },
+        {
+          "id": "synthetic-student-2",
+          "completedModules": 4,
+          "daysSinceLastVisit": 6,
+          "quizScore": 74
+        },
+        {
+          "id": "synthetic-student-3",
+          "completedModules": 5,
+          "daysSinceLastVisit": 9,
+          "quizScore": 81
+        },
+        {
+          "id": "synthetic-student-4",
+          "completedModules": 0,
+          "daysSinceLastVisit": 12,
+          "quizScore": 88
+        },
+        {
+          "id": "synthetic-student-5",
+          "completedModules": 1,
+          "daysSinceLastVisit": 15,
+          "quizScore": 95
+        },
+        {
+          "id": "synthetic-student-6",
+          "completedModules": 2,
+          "daysSinceLastVisit": 18,
+          "quizScore": 41
+        },
+        {
+          "id": "synthetic-student-7",
+          "completedModules": 3,
+          "daysSinceLastVisit": 21,
+          "quizScore": 48
+        },
+        {
+          "id": "synthetic-student-8",
+          "completedModules": 4,
+          "daysSinceLastVisit": 24,
+          "quizScore": 55
+        },
+        {
+          "id": "synthetic-student-9",
+          "completedModules": 5,
+          "daysSinceLastVisit": 2,
+          "quizScore": 62
+        },
+        {
+          "id": "synthetic-student-10",
+          "completedModules": 0,
+          "daysSinceLastVisit": 5,
+          "quizScore": 69
+        },
+        {
+          "id": "synthetic-student-11",
+          "completedModules": 1,
+          "daysSinceLastVisit": 8,
+          "quizScore": 76
+        },
+        {
+          "id": "synthetic-student-12",
+          "completedModules": 2,
+          "daysSinceLastVisit": 11,
+          "quizScore": 83
+        },
+        {
+          "id": "synthetic-student-13",
+          "completedModules": 3,
+          "daysSinceLastVisit": 14,
+          "quizScore": 90
+        },
+        {
+          "id": "synthetic-student-14",
+          "completedModules": 4,
+          "daysSinceLastVisit": 17,
+          "quizScore": 97
+        },
+        {
+          "id": "synthetic-student-15",
+          "completedModules": 5,
+          "daysSinceLastVisit": 20,
+          "quizScore": 43
+        },
+        {
+          "id": "synthetic-student-16",
+          "completedModules": 0,
+          "daysSinceLastVisit": 23,
+          "quizScore": 50
+        },
+        {
+          "id": "synthetic-student-17",
+          "completedModules": 1,
+          "daysSinceLastVisit": 1,
+          "quizScore": 57
+        },
+        {
+          "id": "synthetic-student-18",
+          "completedModules": 2,
+          "daysSinceLastVisit": 4,
+          "quizScore": 64
+        },
+        {
+          "id": "synthetic-student-19",
+          "completedModules": 3,
+          "daysSinceLastVisit": 7,
+          "quizScore": 71
+        },
+        {
+          "id": "synthetic-student-20",
+          "completedModules": 4,
+          "daysSinceLastVisit": 10,
+          "quizScore": 78
+        },
+        {
+          "id": "synthetic-student-21",
+          "completedModules": 5,
+          "daysSinceLastVisit": 13,
+          "quizScore": 85
+        },
+        {
+          "id": "synthetic-student-22",
+          "completedModules": 0,
+          "daysSinceLastVisit": 16,
+          "quizScore": 92
+        },
+        {
+          "id": "synthetic-student-23",
+          "completedModules": 1,
+          "daysSinceLastVisit": 19,
+          "quizScore": 99
+        },
+        {
+          "id": "synthetic-student-24",
+          "completedModules": 2,
+          "daysSinceLastVisit": 22,
+          "quizScore": 45
+        }
+      ]
+    },
+    {
+      "id": "course-5",
+      "title": "UX-исследования",
+      "topics": [
+        "Введение",
+        "Основы",
+        "Практика",
+        "Самостоятельная работа",
+        "Проект"
+      ],
+      "estimatedHours": 24,
+      "students": [
+        {
+          "id": "synthetic-student-1",
+          "completedModules": 4,
+          "daysSinceLastVisit": 4,
+          "quizScore": 76
+        },
+        {
+          "id": "synthetic-student-2",
+          "completedModules": 5,
+          "daysSinceLastVisit": 7,
+          "quizScore": 83
+        },
+        {
+          "id": "synthetic-student-3",
+          "completedModules": 0,
+          "daysSinceLastVisit": 10,
+          "quizScore": 90
+        },
+        {
+          "id": "synthetic-student-4",
+          "completedModules": 1,
+          "daysSinceLastVisit": 13,
+          "quizScore": 97
+        },
+        {
+          "id": "synthetic-student-5",
+          "completedModules": 2,
+          "daysSinceLastVisit": 16,
+          "quizScore": 43
+        },
+        {
+          "id": "synthetic-student-6",
+          "completedModules": 3,
+          "daysSinceLastVisit": 19,
+          "quizScore": 50
+        },
+        {
+          "id": "synthetic-student-7",
+          "completedModules": 4,
+          "daysSinceLastVisit": 22,
+          "quizScore": 57
+        },
+        {
+          "id": "synthetic-student-8",
+          "completedModules": 5,
+          "daysSinceLastVisit": 0,
+          "quizScore": 64
+        },
+        {
+          "id": "synthetic-student-9",
+          "completedModules": 0,
+          "daysSinceLastVisit": 3,
+          "quizScore": 71
+        },
+        {
+          "id": "synthetic-student-10",
+          "completedModules": 1,
+          "daysSinceLastVisit": 6,
+          "quizScore": 78
+        },
+        {
+          "id": "synthetic-student-11",
+          "completedModules": 2,
+          "daysSinceLastVisit": 9,
+          "quizScore": 85
+        },
+        {
+          "id": "synthetic-student-12",
+          "completedModules": 3,
+          "daysSinceLastVisit": 12,
+          "quizScore": 92
+        },
+        {
+          "id": "synthetic-student-13",
+          "completedModules": 4,
+          "daysSinceLastVisit": 15,
+          "quizScore": 99
+        },
+        {
+          "id": "synthetic-student-14",
+          "completedModules": 5,
+          "daysSinceLastVisit": 18,
+          "quizScore": 45
+        },
+        {
+          "id": "synthetic-student-15",
+          "completedModules": 0,
+          "daysSinceLastVisit": 21,
+          "quizScore": 52
+        },
+        {
+          "id": "synthetic-student-16",
+          "completedModules": 1,
+          "daysSinceLastVisit": 24,
+          "quizScore": 59
+        },
+        {
+          "id": "synthetic-student-17",
+          "completedModules": 2,
+          "daysSinceLastVisit": 2,
+          "quizScore": 66
+        },
+        {
+          "id": "synthetic-student-18",
+          "completedModules": 3,
+          "daysSinceLastVisit": 5,
+          "quizScore": 73
+        },
+        {
+          "id": "synthetic-student-19",
+          "completedModules": 4,
+          "daysSinceLastVisit": 8,
+          "quizScore": 80
+        },
+        {
+          "id": "synthetic-student-20",
+          "completedModules": 5,
+          "daysSinceLastVisit": 11,
+          "quizScore": 87
+        },
+        {
+          "id": "synthetic-student-21",
+          "completedModules": 0,
+          "daysSinceLastVisit": 14,
+          "quizScore": 94
+        },
+        {
+          "id": "synthetic-student-22",
+          "completedModules": 1,
+          "daysSinceLastVisit": 17,
+          "quizScore": 40
+        },
+        {
+          "id": "synthetic-student-23",
+          "completedModules": 2,
+          "daysSinceLastVisit": 20,
+          "quizScore": 47
+        },
+        {
+          "id": "synthetic-student-24",
+          "completedModules": 3,
+          "daysSinceLastVisit": 23,
+          "quizScore": 54
+        }
+      ]
+    },
+    {
+      "id": "course-6",
+      "title": "Проектная практика",
+      "topics": [
+        "Введение",
+        "Основы",
+        "Практика",
+        "Самостоятельная работа",
+        "Проект"
+      ],
+      "estimatedHours": 27,
+      "students": [
+        {
+          "id": "synthetic-student-1",
+          "completedModules": 5,
+          "daysSinceLastVisit": 5,
+          "quizScore": 85
+        },
+        {
+          "id": "synthetic-student-2",
+          "completedModules": 0,
+          "daysSinceLastVisit": 8,
+          "quizScore": 92
+        },
+        {
+          "id": "synthetic-student-3",
+          "completedModules": 1,
+          "daysSinceLastVisit": 11,
+          "quizScore": 99
+        },
+        {
+          "id": "synthetic-student-4",
+          "completedModules": 2,
+          "daysSinceLastVisit": 14,
+          "quizScore": 45
+        },
+        {
+          "id": "synthetic-student-5",
+          "completedModules": 3,
+          "daysSinceLastVisit": 17,
+          "quizScore": 52
+        },
+        {
+          "id": "synthetic-student-6",
+          "completedModules": 4,
+          "daysSinceLastVisit": 20,
+          "quizScore": 59
+        },
+        {
+          "id": "synthetic-student-7",
+          "completedModules": 5,
+          "daysSinceLastVisit": 23,
+          "quizScore": 66
+        },
+        {
+          "id": "synthetic-student-8",
+          "completedModules": 0,
+          "daysSinceLastVisit": 1,
+          "quizScore": 73
+        },
+        {
+          "id": "synthetic-student-9",
+          "completedModules": 1,
+          "daysSinceLastVisit": 4,
+          "quizScore": 80
+        },
+        {
+          "id": "synthetic-student-10",
+          "completedModules": 2,
+          "daysSinceLastVisit": 7,
+          "quizScore": 87
+        },
+        {
+          "id": "synthetic-student-11",
+          "completedModules": 3,
+          "daysSinceLastVisit": 10,
+          "quizScore": 94
+        },
+        {
+          "id": "synthetic-student-12",
+          "completedModules": 4,
+          "daysSinceLastVisit": 13,
+          "quizScore": 40
+        },
+        {
+          "id": "synthetic-student-13",
+          "completedModules": 5,
+          "daysSinceLastVisit": 16,
+          "quizScore": 47
+        },
+        {
+          "id": "synthetic-student-14",
+          "completedModules": 0,
+          "daysSinceLastVisit": 19,
+          "quizScore": 54
+        },
+        {
+          "id": "synthetic-student-15",
+          "completedModules": 1,
+          "daysSinceLastVisit": 22,
+          "quizScore": 61
+        },
+        {
+          "id": "synthetic-student-16",
+          "completedModules": 2,
+          "daysSinceLastVisit": 0,
+          "quizScore": 68
+        },
+        {
+          "id": "synthetic-student-17",
+          "completedModules": 3,
+          "daysSinceLastVisit": 3,
+          "quizScore": 75
+        },
+        {
+          "id": "synthetic-student-18",
+          "completedModules": 4,
+          "daysSinceLastVisit": 6,
+          "quizScore": 82
+        },
+        {
+          "id": "synthetic-student-19",
+          "completedModules": 5,
+          "daysSinceLastVisit": 9,
+          "quizScore": 89
+        },
+        {
+          "id": "synthetic-student-20",
+          "completedModules": 0,
+          "daysSinceLastVisit": 12,
+          "quizScore": 96
+        },
+        {
+          "id": "synthetic-student-21",
+          "completedModules": 1,
+          "daysSinceLastVisit": 15,
+          "quizScore": 42
+        },
+        {
+          "id": "synthetic-student-22",
+          "completedModules": 2,
+          "daysSinceLastVisit": 18,
+          "quizScore": 49
+        },
+        {
+          "id": "synthetic-student-23",
+          "completedModules": 3,
+          "daysSinceLastVisit": 21,
+          "quizScore": 56
+        },
+        {
+          "id": "synthetic-student-24",
+          "completedModules": 4,
+          "daysSinceLastVisit": 24,
+          "quizScore": 63
+        }
+      ]
+    }
+  ]
+}
